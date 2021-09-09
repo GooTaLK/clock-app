@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- <link rel="stylesheet" href="css/styles.css" /> -->
+
+    <!-- <script type="module" src="js/index.js" defer></script> -->
+
+    <title>Clock app by GootaLK</title>
+  </head>
+  <body>
+    <header class="header">
+      <div class="header__github-link">
+        <a
+          href="https://github.com/GooTaLK/clock-app"
+          target="_blank"
+          title="Github repository"
+        >
+          <img src="assets/GitHub-Mark-32px.png" alt="GitHub repository"
+        /></a>
+      </div>
+
+      <div class="header__options-btn">
+        <button title="Header options">
+          <span class="lk-icon lki-three_bars"></span>
+        </button>
+      </div>
+
+      <div class="header__menu">
+        <ul class="header__options-menu">
+          <li>
+            <div class="lk-check_btn change-clock-format">
+              <span class="clock-format-text">Format 24h: </span
+              ><span class="lk-check_switch"></span>
+            </div>
+          </li>
+          <li>
+            <button class="lk-btn">Change background</button>
+          </li>
+        </ul>
+      </div>
+
+      <div class="header__clock display-clock">0:00</div>
+    </header>
+
+    <hr class="lk-hr hr_beyond-header" />
+
+    <main class="main">
+      <div class="topbar">
+        <div class="topbar__clock display-clock">0:00</div>
+        <nav class="topbar__nav">
+          <a href="#clock_tools">Alarm</a>
+          <a href="#clock_tools">Clock</a>
+          <a href="#clock_tools">Chronometrum</a>
+          <a href="#clock_tools">Timer</a>
+        </nav>
+      </div>
+
+      <div class="container" id="clock_tools">
+        <section class="tool-section"></section>
+        <section class="tool-section"></section>
+        <section class="tool-section"></section>
+        <section class="tool-section"></section>
+      </div>
+    </main>
+  </body>
+</html>
