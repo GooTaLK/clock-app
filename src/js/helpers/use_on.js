@@ -1,9 +1,9 @@
-const useOn = (
+const useOn = ({
   typeEvent,
   selector,
   callback,
-  callbackIfNotMatch = () => null
-) => {
+  callbackIfNotMatch = () => null,
+}) => {
   document.addEventListener(typeEvent, (e) => {
     const match =
       e.target.matches(selector) || e.target.matches(`${selector} *`);
@@ -13,7 +13,7 @@ const useOn = (
       return;
     }
 
-    callback();
+    callback(e);
   });
 };
 

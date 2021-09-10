@@ -19,21 +19,25 @@ const initClockDisplay = () => {
 };
 
 const clockSettings = () => {
-  useOn("click", ".change-clock-format", () => {
-    const formatType = clockStore.getState().formatType;
-    const is24hFormat = formatType === "24h";
+  useOn({
+    typeEvent: "click",
+    selector: ".change-clock-format",
+    callback: () => {
+      const formatType = clockStore.getState().formatType;
+      const is24hFormat = formatType === "24h";
 
-    if (is24hFormat) {
-      clockStore.dispatch(clockActions.SET_FORMAT_TO_12);
-      $setFormatBtn.classList.add("lk-check_btn--active");
-      $setFormatText.textContent = `Format 12h: `;
-    } else {
-      clockStore.dispatch(clockActions.SET_FORMAT_TO_24);
-      $setFormatBtn.classList.remove("lk-check_btn--active");
-      $setFormatText.textContent = `Format 24h: `;
-    }
+      if (is24hFormat) {
+        clockStore.dispatch(clockActions.SET_FORMAT_TO_12);
+        $setFormatBtn.classList.add("lk-check_btn--active");
+        $setFormatText.textContent = `Format 12h: `;
+      } else {
+        clockStore.dispatch(clockActions.SET_FORMAT_TO_24);
+        $setFormatBtn.classList.remove("lk-check_btn--active");
+        $setFormatText.textContent = `Format 24h: `;
+      }
 
-    updateClock();
+      updateClock();
+    },
   });
 };
 

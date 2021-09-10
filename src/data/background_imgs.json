@@ -1,0 +1,56 @@
+[
+  {
+    "id": 1001,
+    "imgSrc": "assets/forest-5855196_640.jpg",
+    "imgAlt": "Cloudy forest background",
+    "figcaptionText": "Cloudy forest"
+  },
+  {
+    "id": 1002,
+    "imgSrc": "assets/halloween-2837936_640-compr.png",
+    "imgAlt": "Pumpkin & halloween background",
+    "figcaptionText": "Pumpkin & halloween"
+  },
+  {
+    "id": 1003,
+    "imgSrc": "assets/halloween-5596921_640.jpg",
+    "imgAlt": "Halloween decoration background",
+    "figcaptionText": "Halloween decoration"
+  },
+  {
+    "id": 1004,
+    "imgSrc": "assets/landscape-4258253_640-compr.jpg",
+    "imgAlt": "Landscape background",
+    "figcaptionText": "Landscape"
+  },
+  {
+    "id": 1005,
+    "imgSrc": "assets/mountains-1112911_640.jpg",
+    "imgAlt": "Mountains 1 background",
+    "figcaptionText": "Mountains 1"
+  },
+  {
+    "id": 1006,
+    "imgSrc": "assets/mountains-3324569_640-compr.jpg",
+    "imgAlt": "Mountains 2 background",
+    "figcaptionText": "Mountains 2"
+  },
+  {
+    "id": 1007,
+    "imgSrc": "assets/night-3078326_640-compr.jpg",
+    "imgAlt": "Magic night background",
+    "figcaptionText": "Magic night"
+  },
+  {
+    "id": 1008,
+    "imgSrc": "assets/snowflake-1065155_640-compr.jpg",
+    "imgAlt": "Snowflake background",
+    "figcaptionText": "Snowflake"
+  },
+  {
+    "id": 1009,
+    "imgSrc": "assets/trees-4741364_640-compr.png",
+    "imgAlt": "Snow trees background",
+    "figcaptionText": "Snow trees"
+  }
+]
