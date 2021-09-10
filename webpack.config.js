@@ -7,47 +7,50 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 
-const devMode = process.env.NODE_ENV !== "production";
+module.exports = (env, argv) => {
+  const devMode = argv.mode === "development";
 
-module.exports = {
-  entry: "./src/js",
-  output: {
-    path: path.resolve(__dirname, "dist"),
-    assetModuleFilename: "assets/[name][ext]",
-  },
-  module: {
-    rules: [
-      {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        use: {
-          loader: "babel-loader",
-          options: {
-            presets: ["@babel/preset-env"],
+  const config = {
+    entry: "./src/js",
+    output: {
+      path: path.resolve(__dirname, "dist"),
+      assetModuleFilename: "assets/[name][ext]",
+    },
+    module: {
+      rules: [
+        {
+          test: /\.js$/,
+          exclude: /node_modules/,
+          use: {
+            loader: "babel-loader",
+            options: {
+              presets: ["@babel/preset-env"],
+            },
           },
         },
-      },
-      {
-        test: /\.css$/,
-        use: [
-          devMode ? "style-loader" : MiniCssExtractPlugin.loader,
-          "css-loader",
-        ],
-      },
-      {
-        test: /\.(png|jpg)$/i,
-        type: "asset/resource",
-      },
-    ],
-  },
-  plugins: [
-    new CleanWebpackPlugin(),
-    new MiniCssExtractPlugin(),
-    new HtmlWebpackPlugin({
-      template: "./src/index.html",
-    }),
-  ],
-  optimization: {
-    minimizer: [`...`, new CssMinimizerPlugin()],
-  },
+        {
+          test: /\.css$/,
+          use: [
+            devMode ? "style-loader" : MiniCssExtractPlugin.loader,
+            "css-loader",
+          ],
+        },
+        {
+          test: /\.(png|jpg)$/i,
+          type: "asset/resource",
+        },
+      ],
+    },
+    plugins: [
+      new CleanWebpackPlugin(),
+      new HtmlWebpackPlugin({
+        template: "./src/index.html",
+      }),
+    ].concat(devMode ? [] : [new MiniCssExtractPlugin()]),
+    optimization: {
+      minimizer: [`...`, new CssMinimizerPlugin()],
+    },
+  };
+
+  return config;
 };

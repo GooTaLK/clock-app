@@ -3,7 +3,7 @@ import { createStore } from "redux";
 import { formatTo12h, formatTo24h } from "../helpers/date_formater.js";
 
 const clockInitialState = {
-  formatType: "24h",
+  formatType: "12h",
   timeToShow: null,
 };
 

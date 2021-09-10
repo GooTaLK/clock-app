@@ -14,14 +14,22 @@ import "../assets/images/background_imgs/min_resolution/snowflake-1065155_640-co
 import "../assets/images/background_imgs/min_resolution/trees-4741364_640-compr.png";
 
 // Init and more...
-import { initClockDisplay, clockSettings } from "./modules/clock.js";
 import {
+  initClockDisplay,
+  initClockSettings,
+  clockSettings,
+} from "./modules/clock.js";
+import {
+  initHeaderBackground,
   headerMenu,
   changeBackgroundBtn,
 } from "./modules/header_funtionalities";
 
+initClockSettings();
 initClockDisplay();
 clockSettings();
+
+initHeaderBackground();
 headerMenu();
 changeBackgroundBtn();
 

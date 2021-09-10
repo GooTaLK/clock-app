@@ -4,7 +4,6 @@ import useOn from "../helpers/use_on.js";
 
 const $clock = document.querySelectorAll(".display-clock");
 const $setFormatBtn = document.querySelector(".change-clock-format");
-const $setFormatText = $setFormatBtn.querySelector(".clock-format-text");
 
 const updateClock = () => {
   clockStore.dispatch(clockActions.UPDATE_TIME_WITHOUT_SEC);
@@ -18,22 +17,31 @@ const initClockDisplay = () => {
   setInterval(updateClock, 1000);
 };
 
+const initClockSettings = () => {
+  const clockFormat = localStorage.getItem("clock-format");
+
+  if (!clockFormat || clockFormat === "12h") return;
+
+  clockStore.dispatch(clockActions.SET_FORMAT_TO_24);
+  $setFormatBtn.classList.add("lk-check_btn--active");
+};
+
 const clockSettings = () => {
   useOn({
     typeEvent: "click",
     selector: ".change-clock-format",
     callback: () => {
       const formatType = clockStore.getState().formatType;
-      const is24hFormat = formatType === "24h";
+      const is12hFormat = formatType === "12h";
 
-      if (is24hFormat) {
-        clockStore.dispatch(clockActions.SET_FORMAT_TO_12);
-        $setFormatBtn.classList.add("lk-check_btn--active");
-        $setFormatText.textContent = `Format 12h: `;
-      } else {
+      if (is12hFormat) {
         clockStore.dispatch(clockActions.SET_FORMAT_TO_24);
+        $setFormatBtn.classList.add("lk-check_btn--active");
+        localStorage.setItem("clock-format", "24h");
+      } else {
+        clockStore.dispatch(clockActions.SET_FORMAT_TO_12);
         $setFormatBtn.classList.remove("lk-check_btn--active");
-        $setFormatText.textContent = `Format 24h: `;
+        localStorage.setItem("clock-format", "12h");
       }
 
       updateClock();
@@ -41,4 +49,4 @@ const clockSettings = () => {
   });
 };
 
-export { initClockDisplay, clockSettings };
+export { initClockDisplay, initClockSettings, clockSettings };

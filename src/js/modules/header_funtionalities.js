@@ -10,6 +10,25 @@ const $menuHamburgerIcon = document.querySelector(".lki-three_bars");
 const $changeBackgroundBtn = document.querySelector(".change-background-btn");
 const $chevronIcon = document.querySelector(".lki-chevron_down");
 
+const setBackgroundImageWithAnId = (dataImgId) => {
+  const matchingData = backgroundData.filter(
+    ({ id }) => id === Number(dataImgId)
+  );
+  $header.style.setProperty(
+    "background-image",
+    `url(${matchingData[0].imgSrc})`
+  );
+
+  return matchingData;
+};
+
+const initHeaderBackground = () => {
+  const bgImgId = localStorage.getItem("background-img-id");
+  if (!bgImgId) return;
+
+  setBackgroundImageWithAnId(bgImgId);
+};
+
 const headerMenu = () => {
   useOn({
     typeEvent: "click",
@@ -19,11 +38,11 @@ const headerMenu = () => {
       $headerOptionMenu.classList.toggle("header__options-menu--active");
       $menuHamburgerIcon.classList.toggle("lki-three_bars--close");
     },
-    callbackIfNotMatch: (e) => {
+    callbackIfNotMatch: ({ target }) => {
       const isMenuActive = $headerOptionMenu.classList.contains(
         "header__options-menu--active"
       );
-      const clickInMenu = e.target.matches(".header__menu *");
+      const clickInMenu = target.matches(".header__menu *");
 
       if (!isMenuActive || clickInMenu) return;
 
@@ -42,7 +61,6 @@ const changeBackgroundBtn = () => {
       const isCharged = $changeBackgroundBtn.classList.contains(
         "change-background-btn--charged"
       );
-
       if (!isCharged) {
         $changeBackgroundBtn.classList.add("change-background-btn--charged");
         $changeBackgroundBtn.classList.add("change-background-btn--active");
@@ -52,7 +70,6 @@ const changeBackgroundBtn = () => {
 
         $bgSlider.classList.add("lk-slider");
         $bgSlider.classList.add("background-slider");
-        $changeBackgroundBtn.after($bgSlider);
 
         backgroundData.forEach((data) => {
           $bgSlider.appendChild(
@@ -66,7 +83,9 @@ const changeBackgroundBtn = () => {
           );
         });
 
-        setTimeout(() => $bgSlider.classList.add("lk-slider--active"), 10);
+        $changeBackgroundBtn.after($bgSlider);
+
+        setTimeout(() => $bgSlider.classList.add("lk-slider--active"), 0);
 
         return;
       }
@@ -84,18 +103,12 @@ const changeBackgroundBtn = () => {
     selector: ".lk-slider_card",
     callback: ({ target }) => {
       const dataImgId = target.dataset.imgId;
-
       if (!dataImgId) return;
 
-      const matchingData = backgroundData.filter(
-        ({ id }) => id === Number(dataImgId)
-      );
-      $header.style.setProperty(
-        "background-image",
-        `url(${matchingData[0].imgSrc})`
-      );
+      const matchingData = setBackgroundImageWithAnId(dataImgId);
+      localStorage.setItem("background-img-id", matchingData[0].id);
     },
   });
 };
 
-export { headerMenu, changeBackgroundBtn };
+export { initHeaderBackground, headerMenu, changeBackgroundBtn };
