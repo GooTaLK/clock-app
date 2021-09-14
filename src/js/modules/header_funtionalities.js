@@ -1,7 +1,7 @@
 import backgroundData from "../../data/background_imgs.json";
 
 import useOn from "../helpers/use_on";
-import Figure from "./ui_components/Figure";
+import Figure from "./dom_elements/Figure";
 
 const $header = document.querySelector(".header");
 const $headerOptionBtn = document.querySelector(".header__options-btn");

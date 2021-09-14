@@ -1,0 +1,12 @@
+.header__clock {
+  position: relative;
+  color: hsl(0, 0%, 15%);
+  font-size: 4rem;
+  line-height: 3.5rem;
+  font-weight: bolder;
+  padding: 14px;
+  border-radius: 12px;
+  backdrop-filter: blur(15px);
+  background-color: hsla(0, 0%, 80%, 0.4);
+  z-index: 10;
+}

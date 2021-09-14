@@ -61,18 +61,20 @@
       <div class="topbar">
         <div class="topbar__clock display-clock">0:00</div>
         <nav class="topbar__nav">
-          <a href="#clock_tools">Alarm</a>
-          <a href="#clock_tools">Clock</a>
-          <a href="#clock_tools">Chronometrum</a>
-          <a href="#clock_tools">Timer</a>
+          <a href="#clock_tools" data-tool-level="1" data-tool="alarm">Alarm</a>
+          <a href="#clock_tools" data-tool-level="2" data-tool="clock">Clock</a>
+          <a href="#clock_tools" data-tool-level="3" data-tool="chronometrum"
+            >Chronometrum</a
+          >
+          <a href="#clock_tools" data-tool-level="4" data-tool="timer">Timer</a>
         </nav>
       </div>
 
       <div class="container" id="clock_tools">
-        <section class="tool-section"></section>
-        <section class="tool-section"></section>
-        <section class="tool-section"></section>
-        <section class="tool-section"></section>
+        <section class="tool-section">ALARM</section>
+        <section class="tool-section">CLOCK</section>
+        <section class="tool-section">CHRONOMETRUM</section>
+        <section class="tool-section">TIMER</section>
       </div>
     </main>
   </body>

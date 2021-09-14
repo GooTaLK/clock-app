@@ -1,0 +1,9 @@
+.header {
+  background-image: url(../assets/images/background_imgs/min_resolution/trees-4741364_640-compr.png);
+  background-size: cover;
+  background-position-x: center;
+  position: relative;
+  height: calc(100vh - 60px);
+  display: grid;
+  place-items: center;
+}

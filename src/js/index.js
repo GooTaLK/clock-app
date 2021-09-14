@@ -1,5 +1,5 @@
 // Import of main css
-import "../css/styles.css";
+import "../scss/styles.scss";
 
 // Import of images in the index.html
 import "../assets/images/GitHub-Mark-32px.png";
@@ -24,6 +24,7 @@ import {
   headerMenu,
   changeBackgroundBtn,
 } from "./modules/header_funtionalities";
+import { navBtns } from "./modules/nav_interactions";
 
 initClockSettings();
 initClockDisplay();
@@ -32,6 +33,8 @@ clockSettings();
 initHeaderBackground();
 headerMenu();
 changeBackgroundBtn();
+
+navBtns();
 
 // document.addEventListener("DOMContentLoaded", () => {
 // });

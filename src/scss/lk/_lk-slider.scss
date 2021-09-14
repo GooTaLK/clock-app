@@ -1,0 +1,59 @@
+.lk-slider {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  transition: height 0.2s;
+  height: 0px;
+  padding: 0px;
+}
+
+.lk-slider--active {
+  height: 149px;
+  padding-bottom: 5px;
+}
+
+.lk-slider::-webkit-scrollbar {
+  height: 9px;
+}
+
+.lk-slider::-webkit-scrollbar-track {
+  background-color: hsla(0, 0%, 4%, 0.5);
+}
+
+.lk-slider::-webkit-scrollbar-thumb {
+  background-color: hsl(0, 0%, 90%);
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.lk-slider::-webkit-scrollbar-thumb:hover {
+  background-color: aqua;
+}
+
+.lk-slider_card {
+  min-width: 100px;
+  height: 120px;
+  padding: 10px 12px;
+  cursor: pointer;
+  border-radius: 2px;
+}
+
+.lk-slider_card:hover {
+  background-color: hsl(0, 0%, 15%);
+}
+
+.lk-slider_card figure {
+  pointer-events: none;
+  margin: 0;
+}
+
+.lk-slider_card figure img {
+  width: 100px;
+  height: 70px;
+  object-fit: cover;
+}
+.lk-slider_card figure figcaption {
+  text-align: center;
+  padding: 10px 0;
+}

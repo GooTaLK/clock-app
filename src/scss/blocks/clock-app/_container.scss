@@ -1,0 +1,7 @@
+.container {
+  height: calc(100vh - 60px);
+  width: max-content;
+  display: flex;
+  transform: translateX(-100vw);
+  transition: transform 0.3s;
+}
