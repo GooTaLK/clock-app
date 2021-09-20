@@ -59,22 +59,107 @@
 
     <main class="main">
       <div class="topbar">
-        <div class="topbar__clock display-clock">0:00</div>
+        <div class="topbar__clock display-clock display-none">0:00</div>
         <nav class="topbar__nav">
-          <a href="#clock_tools" data-tool-level="1" data-tool="alarm">Alarm</a>
-          <a href="#clock_tools" data-tool-level="2" data-tool="clock">Clock</a>
-          <a href="#clock_tools" data-tool-level="3" data-tool="chronometrum"
+          <a href="#tools" data-tool-level="1" data-tool="alarm">Alarm</a>
+          <a href="#tools" data-tool-level="2" data-tool="clock">Clock</a>
+          <a href="#tools" data-tool-level="3" data-tool="chronometrum"
             >Chronometrum</a
           >
-          <a href="#clock_tools" data-tool-level="4" data-tool="timer">Timer</a>
+          <a href="#tools" data-tool-level="4" data-tool="timer">Timer</a>
         </nav>
       </div>
 
-      <div class="container" id="clock_tools">
-        <section class="tool-section">ALARM</section>
-        <section class="tool-section">CLOCK</section>
-        <section class="tool-section">CHRONOMETRUM</section>
-        <section class="tool-section">TIMER</section>
+      <div class="tools-container" id="tools">
+        <section class="tool-section">
+          <div class="tool__content">
+            <div class="alarm-content"></div>
+          </div>
+
+          <div class="tool__buttons display-none">
+            <div class="ca-btn_group">
+              <button>
+                <img src="./assets/Plus.svg" alt="Alarm add button" />
+              </button>
+              <span>Add</span>
+            </div>
+            <div class="ca-btn_group">
+              <button>
+                <img src="./assets/Cog.svg" alt="Alarm settings button" />
+              </button>
+              <span>Settings</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="tool-section">
+          <div class="tool__content"></div>
+          <div class="tool__buttons">
+            <div class="ca-btn_group">
+              <button>
+                <img src="./assets/Plus.svg" alt="Clock add button" />
+              </button>
+              <span>Add</span>
+            </div>
+            <div class="ca-btn_group">
+              <button>
+                <img src="./assets/Cog.svg" alt="Clock settings button" />
+              </button>
+              <span>Settings</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="tool-section">
+          <div class="tool__content"></div>
+          <div class="tool__buttons">
+            <div class="ca-btn_group">
+              <button>
+                <img src="./assets/Play.svg" alt="Chronometrum start button" />
+              </button>
+              <span>Start</span>
+            </div>
+            <div class="ca-btn_group">
+              <button>
+                <img
+                  src="./assets/Square.svg"
+                  alt="Chronometrum restart button"
+                />
+              </button>
+              <span>Restart</span>
+            </div>
+            <div class="ca-btn_group">
+              <button>
+                <img src="./assets/Radar.svg" alt="Chronometrum lap button" />
+              </button>
+              <span>Lap</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="tool-section">
+          <div class="tool__content"></div>
+          <div class="tool__buttons">
+            <div class="ca-btn_group">
+              <button>
+                <img src="./assets/Play.svg" alt="Timer start button" />
+              </button>
+              <span>Start</span>
+            </div>
+            <div class="ca-btn_group">
+              <button>
+                <img src="./assets/Square.svg" alt="Timer restart button" />
+              </button>
+              <span>Restart</span>
+            </div>
+            <div class="ca-btn_group">
+              <button>
+                <img src="./assets/Bell.svg" alt="Timer ring button" />
+              </button>
+              <span>Ring</span>
+            </div>
+          </div>
+        </section>
       </div>
     </main>
   </body>
