@@ -11,7 +11,6 @@ module.exports = (env, argv) => {
   const devMode = argv.mode === "development";
 
   const config = {
-    entry: "./src/js",
     output: {
       path: path.resolve(__dirname, "dist"),
       assetModuleFilename: "assets/[name][ext]",
@@ -33,17 +32,19 @@ module.exports = (env, argv) => {
           use: [
             devMode ? "style-loader" : MiniCssExtractPlugin.loader,
             "css-loader",
+            {
+              loader: "postcss-loader",
+              options: {
+                postcssOptions: {
+                  plugins: ["autoprefixer"],
+                },
+              },
+            },
             "sass-loader",
-            // {
-            //   loader: "sass-loader",
-            //   options: {
-            //     implementation: require("sass"),
-            //   },
-            // },
           ],
         },
         {
-          test: /\.(png|jpg)$/i,
+          test: /\.(png|jpg|svg)$/i,
           type: "asset/resource",
         },
       ],
