@@ -21,10 +21,10 @@ const initAlarmEditModal = () => {
 
   const closeAlarmModal = (modal, isEdit) => {
     isEdit && $toolContainer.style.setProperty("transform", "translateX(0vw)");
-    modal.toggleModal();
+    modal.toggle();
     setTimeout(() => {
-      modal.removeChildrenFromModal();
-      modal.changeAnimationOfModal(null);
+      modal.removeChildren();
+      modal.changeAnimation(null);
     }, 200);
     removeListenersWhenClose();
   };

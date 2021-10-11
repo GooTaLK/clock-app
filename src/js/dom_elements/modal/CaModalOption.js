@@ -21,15 +21,6 @@ const CaModalOption = (
       const $content = document.createElement("div");
       const $span = document.createElement("span");
 
-      const insertDescription = () => {
-        if (!description) return null;
-
-        const $p = document.createElement("p");
-        $p.innerHTML = description;
-
-        return $p;
-      };
-
       $button.classList.add("ca-modal-option-btn");
       value && ($button.value = value);
       name && ($button.name = name);
@@ -39,7 +30,12 @@ const CaModalOption = (
       $span.classList.add("ca-i-chevron");
       chevronText && ($span.textContent = chevronText);
 
-      $content.appendChild(insertDescription());
+      if (description) {
+        const $p = document.createElement("p");
+        $p.innerHTML = description;
+        $content.appendChild($p);
+      }
+
       $button.append($content, $span);
       $optionContainer.appendChild($button);
 
