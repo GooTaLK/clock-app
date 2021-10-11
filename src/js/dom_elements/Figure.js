@@ -6,8 +6,10 @@ const Figure = ({ containerClass, imgSrc, imgAlt, figcaptionText, id }) => {
 
   $container.classList.add(containerClass);
   $container.dataset.imgId = id;
+
   $image.src = imgSrc;
   $image.alt = imgAlt;
+
   $figCaption.textContent = figcaptionText;
 
   $figure.append($image, $figCaption);
