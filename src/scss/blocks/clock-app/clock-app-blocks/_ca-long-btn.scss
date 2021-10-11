@@ -1,0 +1,14 @@
+.ca-long-btn {
+  cursor: pointer;
+  border: 1px solid #4c5456;
+  border-radius: 9px;
+  background-color: #1d2729;
+  color: #b5babe;
+  width: 100%;
+  font-size: 14px;
+  padding: 13px 0;
+
+  &[data-alarm-button="delete"] {
+    color: tomato;
+  }
+}

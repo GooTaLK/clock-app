@@ -1,6 +1,30 @@
 .tool-section {
-  height: 100%;
+  height: calc(100% - 20px);
   width: 100vw;
-  display: grid;
-  place-items: center;
+  padding-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.tool__content {
+  min-height: calc(100% - 150px);
+  overflow-y: auto;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.tool__buttons {
+  box-shadow: 0 -1px #323232;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 35px;
+  width: calc(100% - 70px);
+  max-width: 400px;
+  height: 150px;
+  display: flex;
+  gap: 5px;
+  overflow-x: auto;
 }

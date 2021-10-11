@@ -1,0 +1,57 @@
+@use "../../placeholders" as *;
+
+.alarm-content {
+  margin: 1px 38px 0 38px;
+  width: calc(100% - 76px);
+  height: calc(100vh - 231px);
+  box-shadow: 0 -1px #2d3335;
+  display: flex;
+  flex-direction: column;
+
+  &--empty {
+    height: calc(100vh - 80px);
+    margin: 0 20px;
+    width: calc(100% - 40px);
+    box-shadow: none;
+
+    &__frontage {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    & p {
+      color: #8d9394;
+    }
+  }
+
+  &__card {
+    @extend %avoid-block-button;
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 1px #323232;
+    transition: background-color 0.5s cubic-bezier(0, 0.5, 1, 0.5);
+
+    &:hover {
+      background-color: #2f2f2f;
+    }
+
+    &--active > &__content {
+      color: #ffffff;
+    }
+
+    &__content {
+      color: #8d9394;
+      padding: 21px 0;
+    }
+
+    &__time {
+      font-size: 25px;
+      display: block;
+    }
+  }
+}
