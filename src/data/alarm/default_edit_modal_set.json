@@ -1,0 +1,12 @@
+{
+  "isEdit": true,
+  "id": null,
+  "time": {
+    "rotateOfLeft": 0,
+    "rotateOfRight": 0
+  },
+  "repeat": "Only one time",
+  "ring": "Creamy",
+  "vibrate": "off",
+  "name": "Alarm"
+}

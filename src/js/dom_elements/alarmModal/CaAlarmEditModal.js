@@ -1,18 +1,17 @@
+import defaultEditModalSet from "../../../data/alarm/default_edit_modal_set.json";
+
 import CaModalHeader from "../modal/CaModalHeader";
 import CaModalOption from "../modal/CaModalOption";
 import CaAlarmModalEditTime from "./CaAlarmModalEditTime";
 
 const CaAlarmEditModal = ({
-  isEdit = true,
-  id = null,
-  time = {
-    rotateOfLeft: 0,
-    rotateOfRight: 0,
-  },
-  repeat = "Only one time",
-  ring = "Creamy",
-  vibrate = "off",
-  name = "Alarm",
+  isEdit = defaultEditModalSet.isEdit,
+  id = defaultEditModalSet.id,
+  time = defaultEditModalSet.time,
+  repeat = defaultEditModalSet.repeat,
+  ring = defaultEditModalSet.ring,
+  vibrate = defaultEditModalSet.vibrate,
+  name = defaultEditModalSet.name,
 }) => {
   const $container = document.createElement("div");
   const $content = document.createElement("form");
@@ -26,18 +25,15 @@ const CaAlarmEditModal = ({
     type: "children",
     children: CaAlarmModalEditTime(time.rotateOfLeft, time.rotateOfRight),
   });
-  const $editRepeat = CaModalOption({
-    optionClass: "alarm-option__edit-repeat",
-    child: {
-      type: "selectButton",
-      name: "repeat",
-      text: "Repeat",
-      value: repeat,
-      chevronText: repeat,
-    },
+  const $editRepeat = CaModalOption("alarm-option__edit-repeat", {
+    type: "button",
+    name: "repeat",
+    text: "Repeat",
+    value: repeat,
+    chevronText: repeat,
   });
   const $editRing = CaModalOption("alarm-option__edit-ring", {
-    type: "selectButton",
+    type: "button",
     name: "ring",
     text: "Ring",
     value: ring,
@@ -50,7 +46,7 @@ const CaAlarmEditModal = ({
     value: vibrate,
   });
   const $editName = CaModalOption("alarm-option__edit-name", {
-    type: "selectButton",
+    type: "button",
     name: "alarmName",
     text: "Name",
     value: name,
