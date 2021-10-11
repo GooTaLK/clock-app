@@ -63,7 +63,7 @@ const formatTo12h = (
   let [hours, minutes, seconds] = getTimeFromDate(date);
   const isPostMeridium = hours > 12;
 
-  const meridium = isPostMeridium ? "pm" : "am";
+  const meridium = isPostMeridium || hours === 12 ? "pm" : "am";
   hours = isPostMeridium ? hours - 12 : hours;
 
   const dateFormated = formatDate([hours, minutes, seconds], fullOptions);
@@ -72,4 +72,4 @@ const formatTo12h = (
   return allowMeridium ? dateFormatedMeridium : dateFormated;
 };
 
-export { formatTo24h, formatTo12h };
+export { formatTo24h, formatTo12h, getTimeFromDate, addCeroAhead };
