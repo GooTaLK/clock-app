@@ -1,0 +1,19 @@
+.alarm-modal {
+  height: 100%;
+
+  &__content {
+    height: calc(100% - 49px);
+    overflow: scroll;
+
+    .alarm-option__edit-time {
+      padding-top: 14px;
+      padding-bottom: 14px;
+    }
+
+    .alarm-option__edit-delete {
+      display: grid;
+      place-items: center;
+      padding: 14px;
+    }
+  }
+}

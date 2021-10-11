@@ -1,0 +1,73 @@
+@use "../../../placeholders" as *;
+
+.ca-alarm-modal-edit-option {
+  height: 202px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow-y: hidden;
+  gap: 6px;
+
+  .left-wheel-container,
+  .right-wheel-container {
+    @extend %avoid-block-button;
+    color: #ffffff;
+    cursor: grab;
+
+    &--grabbing {
+      cursor: grabbing;
+    }
+
+    &:hover {
+      color: turquoise;
+    }
+
+    &:hover > div::before {
+      border-color: turquoise;
+    }
+  }
+
+  .left-wheel-time,
+  .right-wheel-time {
+    width: 78px;
+    height: 202px;
+    display: grid;
+    place-items: center;
+    position: relative;
+    transform-style: preserve-3d;
+    transform: rotateX(var(--rotate-x));
+
+    &::before {
+      content: "";
+      display: block;
+      position: absolute;
+      left: 0;
+      top: calc((100% - 78px) / 2);
+      width: 76px;
+      height: 76px;
+      border: 1px solid #2e2e2e;
+      border-radius: 50%;
+      transform: rotateX(calc(var(--rotate-x) * -1));
+    }
+
+    &--adjustment {
+      transition: transform 0.5s;
+    }
+  }
+
+  @for $i from 0 through 23 {
+    .left-wheel-time span:nth-child(#{$i + 1}) {
+      position: absolute;
+      transform: rotateX(15deg * $i) translateZ(218.378px);
+      backface-visibility: hidden;
+    }
+  }
+
+  @for $i from 0 through 59 {
+    .right-wheel-time span:nth-child(#{$i + 1}) {
+      position: absolute;
+      transform: rotateX(6deg * $i) translateZ(548.58px);
+      backface-visibility: hidden;
+    }
+  }
+}

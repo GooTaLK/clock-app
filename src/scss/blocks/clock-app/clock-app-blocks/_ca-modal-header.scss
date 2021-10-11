@@ -1,0 +1,23 @@
+.ca-modal-header {
+  font-size: 14px;
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  padding: 16px 38px;
+  box-shadow: 0 1px #2d2d2d;
+  position: relative;
+
+  & .ca-i-times,
+  & .ca-i-check {
+    position: absolute;
+    cursor: pointer;
+  }
+
+  & .ca-i-times {
+    left: 15px;
+  }
+
+  & .ca-i-check {
+    right: 15px;
+  }
+}

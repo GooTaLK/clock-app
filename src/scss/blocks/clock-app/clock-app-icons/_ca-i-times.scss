@@ -1,0 +1,27 @@
+.ca-i-times {
+  position: relative;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 14px;
+  height: 15px;
+
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    display: block;
+    width: 18px;
+    height: 2px;
+    border-radius: 1px;
+    background-color: #ffffff;
+  }
+
+  &::before {
+    transform: rotate(47deg);
+  }
+
+  &::after {
+    transform: rotate(-47deg);
+  }
+}

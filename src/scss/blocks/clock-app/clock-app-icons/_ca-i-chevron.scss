@@ -1,0 +1,27 @@
+.ca-i-chevron {
+  position: relative;
+  display: inline-block;
+  margin-right: 17px;
+
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    display: block;
+    width: 12px;
+    height: 1px;
+    border-radius: 1px;
+    background-color: #ffffff;
+    top: 50%;
+    left: calc(100% + 10px);
+    transform-origin: right;
+  }
+
+  &::before {
+    transform: rotate(45deg);
+  }
+
+  &::after {
+    transform: rotate(-45deg);
+  }
+}

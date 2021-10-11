@@ -1,0 +1,23 @@
+.ca-modal-option {
+  min-height: 64px;
+  box-shadow: 0 1px #2d2d2d;
+
+  &-btn,
+  &-check-btn {
+    padding: 0 17px;
+    border: none;
+    background-color: transparent;
+    color: #ffffff;
+    width: 100%;
+    height: 64px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    transition: color 0.1s;
+
+    &:hover {
+      color: turquoise;
+    }
+  }
+}
