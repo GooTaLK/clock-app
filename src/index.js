@@ -20,6 +20,7 @@ import "./assets/svg_icons/Pause.svg";
 import "./assets/svg_icons/Play.svg";
 import "./assets/svg_icons/Plus.svg";
 import "./assets/svg_icons/Square.svg";
+import "./assets/svg_icons/Clock.svg";
 
 // Import app.js
 import app from "./js/app";

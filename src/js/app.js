@@ -1,5 +1,8 @@
-// Init and more...
-import { applyMiddleware } from "redux";
+import {
+  initAlarmInterface,
+  initAlarmListeners,
+} from "./modules/alarm_interface.js";
+import { initAlarmEditModal } from "./modules/modal.js";
 import {
   initClockDisplay,
   initClockSettings,
@@ -13,18 +16,17 @@ import {
 import { navBtns } from "./modules/nav_interactions";
 
 const app = () => {
-  initClockSettings();
-  initClockDisplay();
-  clockSettings();
-
   initHeaderBackground();
+  initClockDisplay();
+  initClockSettings();
+  initAlarmInterface();
+  initAlarmListeners();
+  initAlarmEditModal();
+
   headerMenu();
   changeBackgroundBtn();
-
+  clockSettings();
   navBtns();
 };
-
-// document.addEventListener("DOMContentLoaded", () => {
-// });
 
 export default app;
