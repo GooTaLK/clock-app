@@ -7,3 +7,7 @@
 @forward 'blocks/header';
 @forward 'blocks/main-interface';
 @forward 'blocks/clock-app';
+
+.display-none {
+  display: none;
+}

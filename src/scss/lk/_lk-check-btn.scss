@@ -4,9 +4,9 @@
   justify-content: space-between;
   padding: 10px 12px;
   cursor: pointer;
-}
 
-.lk-check_btn--active > .lk-check_switch::before {
-  transform: translateX(8px);
-  background-color: aqua;
+  &--active > .lk-check_switch::before {
+    transform: translateX(8px);
+    background-color: aqua;
+  }
 }

@@ -6,39 +6,39 @@
   width: 97px;
   overflow-x: hidden;
   z-index: 20;
-}
 
-.header__options-btn button {
-  position: relative;
-  border: none;
-  padding: 12px 8px 12px 6px;
-  border-radius: 0 50% 50% 0;
-  backdrop-filter: blur(15px);
-  background-color: hsla(0, 0%, 80%, 0.4);
-  cursor: pointer;
-}
+  & button {
+    position: relative;
+    border: none;
+    padding: 12px 8px 12px 6px;
+    border-radius: 0 50% 50% 0;
+    backdrop-filter: blur(15px);
+    background-color: hsla(0, 0%, 80%, 0.4);
+    cursor: pointer;
 
-.header__options-btn button::before {
-  content: "Options";
-  position: absolute;
-  top: 0;
-  left: 0;
-  color: #090909;
-  font-size: 15px;
-  font-weight: bold;
-  vertical-align: middle;
-  padding: 0 5px;
-  height: 100%;
-  background-color: hsla(0, 0%, 50%, 0.4);
-  border-radius: 5px 0 0 5px;
-  display: grid;
-  place-items: center;
-  opacity: 0;
-  transition: transform 0.5s, opacity 0.1s 0.1s;
-}
+    &::before {
+      content: "Options";
+      position: absolute;
+      top: 0;
+      left: 0;
+      color: #090909;
+      font-size: 15px;
+      font-weight: bold;
+      vertical-align: middle;
+      padding: 0 5px;
+      height: 100%;
+      background-color: hsla(0, 0%, 50%, 0.4);
+      border-radius: 5px 0 0 5px;
+      display: grid;
+      place-items: center;
+      opacity: 0;
+      transition: transform 0.5s, opacity 0.1s 0.1s;
+    }
+  }
 
-.header__options-btn--active button::before,
-.header__options-btn:hover button::before {
-  transform: translateX(-100%);
-  opacity: 1;
+  &--active button::before,
+  &:hover button::before {
+    transform: translateX(-100%);
+    opacity: 1;
+  }
 }

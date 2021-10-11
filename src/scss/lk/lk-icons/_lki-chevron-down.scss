@@ -3,36 +3,36 @@
   display: block;
   width: 16px;
   height: 12px;
-}
 
-.lk-icon.lki-chevron_down::before,
-.lk-icon.lki-chevron_down::after {
-  position: absolute;
-  top: 50%;
-  content: "";
-  display: block;
-  width: 10px;
-  height: 2px;
-  background-color: #ffffff;
-  border-radius: 1px;
-  transform-origin: center;
-  transition: transform 0.2s;
-}
+  &::before,
+  &::after {
+    position: absolute;
+    top: 50%;
+    content: "";
+    display: block;
+    width: 10px;
+    height: 2px;
+    background-color: #ffffff;
+    border-radius: 1px;
+    transform-origin: center;
+    transition: transform 0.2s;
+  }
 
-.lk-icon.lki-chevron_down::before {
-  left: 0;
-  transform: rotate(40deg);
-}
+  &::before {
+    left: 0;
+    transform: rotate(40deg);
+  }
 
-.lk-icon.lki-chevron_down::after {
-  right: 0;
-  transform: rotate(-40deg);
-}
+  &::after {
+    right: 0;
+    transform: rotate(-40deg);
+  }
 
-.lk-icon.lki-chevron_down--up::before {
-  transform: rotate(-40deg);
-}
+  &--up::before {
+    transform: rotate(-40deg);
+  }
 
-.lk-icon.lki-chevron_down--up::after {
-  transform: rotate(40deg);
+  &--up::after {
+    transform: rotate(40deg);
+  }
 }

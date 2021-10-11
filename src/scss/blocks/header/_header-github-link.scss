@@ -9,9 +9,9 @@
   backdrop-filter: blur(15px);
   background-color: hsla(0, 0%, 80%, 0.4);
   z-index: 20;
-}
 
-.header__github-link img {
-  width: 100%;
-  object-fit: cover;
+  & img {
+    width: 100%;
+    object-fit: cover;
+  }
 }

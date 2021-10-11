@@ -1,7 +1,7 @@
 import backgroundData from "../../data/background_imgs.json";
 
 import useOn from "../helpers/use_on";
-import Figure from "./dom_elements/Figure";
+import Figure from "../dom_elements/Figure";
 
 const $header = document.querySelector(".header");
 const $headerOptionBtn = document.querySelector(".header__options-btn");
@@ -10,7 +10,7 @@ const $menuHamburgerIcon = document.querySelector(".lki-three_bars");
 const $changeBackgroundBtn = document.querySelector(".change-background-btn");
 const $chevronIcon = document.querySelector(".lki-chevron_down");
 
-const setBackgroundImageWithAnId = (dataImgId) => {
+const setBackgroundImageWithId = (dataImgId) => {
   const matchingData = backgroundData.filter(
     ({ id }) => id === Number(dataImgId)
   );
@@ -26,7 +26,7 @@ const initHeaderBackground = () => {
   const bgImgId = localStorage.getItem("background-img-id");
   if (!bgImgId) return;
 
-  setBackgroundImageWithAnId(bgImgId);
+  setBackgroundImageWithId(bgImgId);
 };
 
 const headerMenu = () => {
@@ -105,7 +105,7 @@ const changeBackgroundBtn = () => {
       const dataImgId = target.dataset.imgId;
       if (!dataImgId) return;
 
-      const matchingData = setBackgroundImageWithAnId(dataImgId);
+      const matchingData = setBackgroundImageWithId(dataImgId);
       localStorage.setItem("background-img-id", matchingData[0].id);
     },
   });

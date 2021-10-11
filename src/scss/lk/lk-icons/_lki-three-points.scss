@@ -1,28 +1,28 @@
-.lk-icon.lki-three_points,
-.lk-icon.lki-three_points::before,
-.lk-icon.lki-three_points::after {
-  display: block;
-  width: 5px;
-  height: 5px;
-  border-radius: 40%;
-  background-color: #090909;
-}
-
 .lk-icon.lki-three_points {
   position: relative;
-}
 
-.lk-icon.lki-three_points::before,
-.lk-icon.lki-three_points::after {
-  position: absolute;
-  content: "";
-  left: 0;
-}
+  &,
+  &::before,
+  &::after {
+    display: block;
+    width: 5px;
+    height: 5px;
+    border-radius: 40%;
+    background-color: #090909;
+  }
 
-.lk-icon.lki-three_points::before {
-  top: -8px;
-}
+  &::before,
+  &::after {
+    position: absolute;
+    content: "";
+    left: 0;
+  }
 
-.lk-icon.lki-three_points::after {
-  bottom: -8px;
+  &::before {
+    top: -8px;
+  }
+
+  &::after {
+    bottom: -8px;
+  }
 }

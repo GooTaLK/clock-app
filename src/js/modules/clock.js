@@ -1,6 +1,7 @@
+import useOn from "../helpers/use_on.js";
+
 import { clockStore } from "../redux_stores/clock_store.js";
 import clockActions from "../redux_actions/clock_actions.js";
-import useOn from "../helpers/use_on.js";
 
 const $clock = document.querySelectorAll(".display-clock");
 const $setFormatBtn = document.querySelector(".change-clock-format");

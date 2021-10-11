@@ -5,17 +5,17 @@
   background-color: hsl(0, 0%, 50%);
   border-radius: 2px;
   position: relative;
-}
 
-.lk-check_switch::before {
-  content: "";
-  display: block;
-  position: absolute;
-  top: -2px;
-  left: 0;
-  width: 14px;
-  height: 14px;
-  border-radius: 50%;
-  background-color: hsl(0, 0%, 90%);
-  transition: transform 0.1s, background 0.4s;
+  &::before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: -2px;
+    left: 0;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background-color: hsl(0, 0%, 90%);
+    transition: transform 0.1s, background 0.4s;
+  }
 }

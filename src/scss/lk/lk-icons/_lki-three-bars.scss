@@ -1,42 +1,42 @@
-.lk-icon.lki-three_bars,
-.lk-icon.lki-three_bars::before,
-.lk-icon.lki-three_bars::after {
-  display: block;
-  width: 15px;
-  height: 2px;
-  background-color: #090909;
-}
-
 .lk-icon.lki-three_bars {
   position: relative;
   transition: background 0.3s;
-}
 
-.lk-icon.lki-three_bars::before,
-.lk-icon.lki-three_bars::after {
-  position: absolute;
-  content: "";
-  transition: transform 0.3s;
-}
+  &,
+  &::before,
+  &::after {
+    display: block;
+    width: 15px;
+    height: 2px;
+    background-color: #090909;
+  }
 
-.lk-icon.lki-three_bars::before {
-  transform: translateY(-4px);
-}
+  &::before,
+  &::after {
+    position: absolute;
+    content: "";
+    transition: transform 0.3s;
+  }
 
-.lk-icon.lki-three_bars::after {
-  transform: translateY(4px);
-}
+  &::before {
+    transform: translateY(-4px);
+  }
 
-.lk-icon.lki-three_bars--close {
-  background-color: transparent;
-}
+  &::after {
+    transform: translateY(4px);
+  }
 
-.lk-icon.lki-three_bars--close::before {
-  transform: translate(-2px, 0) rotate(45deg);
-  width: 18px;
-}
+  &--close {
+    background-color: transparent;
+  }
 
-.lk-icon.lki-three_bars--close::after {
-  transform: translate(-2px, 0) rotate(-45deg);
-  width: 18px;
+  &--close::before {
+    transform: translate(-2px, 0) rotate(45deg);
+    width: 18px;
+  }
+
+  &--close::after {
+    transform: translate(-2px, 0) rotate(-45deg);
+    width: 18px;
+  }
 }

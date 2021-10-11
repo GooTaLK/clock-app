@@ -1,3 +1,5 @@
 .main {
-  overflow-x: hidden;
+  height: 100vh;
+  overflow: hidden;
+  transition: transform 0.2s;
 }
