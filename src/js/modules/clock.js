@@ -1,15 +1,18 @@
 import useOn from "../helpers/use_on.js";
+import { formatTo12h, formatTo24h } from "../helpers/date_formater.js";
 
-import { clockStore } from "../redux_stores/clock_store.js";
-import clockActions from "../redux_actions/clock_actions.js";
+import clockState from "../states/clock.js";
 
 const $clock = document.querySelectorAll(".display-clock");
 const $setFormatBtn = document.querySelector(".change-clock-format");
 
 const updateClock = () => {
-  clockStore.dispatch(clockActions.UPDATE_TIME_WITHOUT_SEC);
+  clockState.timeToShow =
+    clockState.formatType === "24h"
+      ? formatTo24h(new Date(), { allowSeconds: false })
+      : formatTo12h(new Date(), { allowSeconds: false });
 
-  const currentTime = clockStore.getState().timeToShow;
+  const currentTime = clockState.timeToShow;
   $clock.forEach((el) => (el.textContent = currentTime));
 };
 
@@ -23,7 +26,7 @@ const initClockSettings = () => {
 
   if (!clockFormat || clockFormat === "12h") return;
 
-  clockStore.dispatch(clockActions.SET_FORMAT_TO_24);
+  clockState.formatType = "24h";
   $setFormatBtn.classList.add("lk-check_btn--active");
 };
 
@@ -32,15 +35,14 @@ const clockSettings = () => {
     typeEvent: "click",
     selector: ".change-clock-format",
     callback: () => {
-      const formatType = clockStore.getState().formatType;
-      const is12hFormat = formatType === "12h";
+      const is12hFormat = clockState.formatType === "12h";
 
       if (is12hFormat) {
-        clockStore.dispatch(clockActions.SET_FORMAT_TO_24);
+        clockState.formatType = "24h";
         $setFormatBtn.classList.add("lk-check_btn--active");
         localStorage.setItem("clock-format", "24h");
       } else {
-        clockStore.dispatch(clockActions.SET_FORMAT_TO_12);
+        clockState.formatType = "12h";
         $setFormatBtn.classList.remove("lk-check_btn--active");
         localStorage.setItem("clock-format", "12h");
       }
