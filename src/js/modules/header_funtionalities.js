@@ -1,4 +1,5 @@
 import backgroundData from "../../data/background_imgs.json";
+import defaultBackgroundImg from "../../data/background_default_img.json";
 
 import useOn from "../helpers/use_on";
 import Figure from "../dom_elements/Figure";
@@ -24,9 +25,10 @@ const setBackgroundImageWithId = (dataImgId) => {
 
 const initHeaderBackground = () => {
   const bgImgId = localStorage.getItem("background-img-id");
-  if (!bgImgId) return;
 
-  setBackgroundImageWithId(bgImgId);
+  !bgImgId
+    ? setBackgroundImageWithId(defaultBackgroundImg.id)
+    : setBackgroundImageWithId(bgImgId);
 };
 
 const headerMenu = () => {
