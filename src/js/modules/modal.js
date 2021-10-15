@@ -12,6 +12,7 @@ import Modal from "../dom_elements/modal/modal";
 import CaAlarmEditModal from "../dom_elements/alarmModal/CaAlarmEditModal";
 import initWheelInEditModal, { wheels } from "./wheels_in_alarm_edit_time";
 import { initAlarmInterface } from "./alarm_interface";
+import CaAlarmSettingModal from "../dom_elements/alarmModal/CaAlarmSettingModal";
 
 const $toolContainer = document.querySelector(".tools-container");
 const modal = new Modal(".main");
@@ -19,17 +20,17 @@ const modal = new Modal(".main");
 const initAlarmEditModal = () => {
   let removeListenersWhenClose;
 
-  const closeAlarmModal = (modal, isEdit) => {
-    isEdit && $toolContainer.style.setProperty("transform", "translateX(0vw)");
-    modal.toggle();
-    setTimeout(() => {
-      modal.removeChildren();
-      modal.changeAnimation(null);
-    }, 200);
+  const closeAlarmModal = (isEdit) => {
+    modal.close({
+      callback: () =>
+        isEdit
+          ? $toolContainer.style.setProperty("transform", "translateX(0vw)")
+          : null,
+    });
     removeListenersWhenClose();
   };
 
-  const handlingEventsWhenCreateEditModal = () => {
+  const addListenersWhenCreate = () => {
     const [addSubmitAlarmForm, removeSubmitAlarmForm] = useOn({
       mode: "selector",
       typeEvent: "submit",
@@ -52,6 +53,9 @@ const initAlarmEditModal = () => {
     };
   };
 
+  initWheelInEditModal("left");
+  initWheelInEditModal("right");
+
   useOn({
     typeEvent: "click",
     selector: ".alarm-content__card[data-alarm-button='edit']",
@@ -59,34 +63,32 @@ const initAlarmEditModal = () => {
       if (target.matches(".ca-i-switch")) return;
 
       const alarmId = getDataOfParent(target, "alarmId");
-      const {
-        time,
-        name,
-        repeatAt: repeat,
-        ring,
-        vibrate,
-      } = getOneLocalDataById("alarm-data", alarmId);
+      const { time, name, repeatAt, ring, vibrate } = getOneLocalDataById(
+        "alarm-data",
+        alarmId
+      );
       const rotateOfLeft = time.split(":")[0] * 15;
       const rotateOfRight = time.split(":")[1] * 6;
 
-      wheels.left.rotateValue = rotateOfLeft;
-      wheels.right.rotateValue = rotateOfRight;
-      modal.insertChildren(
-        CaAlarmEditModal({
+      modal.open({
+        children: CaAlarmEditModal({
           isEdit: true,
           time: { rotateOfLeft, rotateOfRight },
           id: alarmId,
           name,
-          repeat,
+          repeat: repeatAt,
           ring,
           vibrate,
-        })
-      );
-      $toolContainer.style.setProperty("transform", "translateX(-100vw)");
-      modal.changeAnimation("rightToLeft");
-      setTimeout(() => modal.toggle(), 0);
+        }),
+        animation: "rightToLeft",
+        callback: () =>
+          $toolContainer.style.setProperty("transform", "translateX(-100vw)"),
+      });
 
-      handlingEventsWhenCreateEditModal();
+      wheels.left.rotateValue = rotateOfLeft;
+      wheels.right.rotateValue = rotateOfRight;
+
+      addListenersWhenCreate();
     },
   });
 
@@ -98,18 +100,18 @@ const initAlarmEditModal = () => {
       const rotateOfLeft = hours * 15;
       const rotateOfRight = minutes * 6;
 
-      wheels.left.rotateValue = rotateOfLeft;
-      wheels.right.rotateValue = rotateOfRight;
-      modal.insertChildren(
-        CaAlarmEditModal({
+      modal.open({
+        children: CaAlarmEditModal({
           isEdit: false,
           time: { rotateOfLeft, rotateOfRight },
-        })
-      );
-      modal.changeAnimation("botToTop");
-      setTimeout(() => modal.toggle(), 0);
+        }),
+        animation: "botToTop",
+      });
 
-      handlingEventsWhenCreateEditModal();
+      wheels.left.rotateValue = rotateOfLeft;
+      wheels.right.rotateValue = rotateOfRight;
+
+      addListenersWhenCreate();
     },
   });
 
@@ -117,42 +119,46 @@ const initAlarmEditModal = () => {
     typeEvent: "click",
     selector: "[data-alarm-button='close-modal']",
     callback: ({ target }) => {
-      const isEdit = getDataOfParent(target, "alarmModalType") === "edit";
-      closeAlarmModal(modal, isEdit);
+      const modalType = getDataOfParent(target, "alarmModalType");
+      if (modalType !== "edit" && modalType !== "add") return;
+
+      const isEdit = modalType === "edit";
+      closeAlarmModal(isEdit);
     },
   });
 
   useOn({
     typeEvent: "click",
     selector: "[data-alarm-button='save']",
-    callback: () => {
-      const $alarmModal = document.querySelector(".alarm-modal__content");
-      const isEdit =
-        $alarmModal.parentElement.dataset.alarmModalType === "edit";
-      const id = $alarmModal.parentElement.dataset.alarmId;
+    callback: ({ target }) => {
+      const isEdit = getDataOfParent(target, "alarmModalType") === "edit";
+      const id = getDataOfParent(target, "alarmId");
+
+      const { ring, vibrate, repeat, leftWheel, rightWheel, alarmName } =
+        document.querySelector(".alarm-modal__content");
+
+      const generateId = `_id-r-${Math.round(Math.random() * 100)}-t-${
+        Date.now
+      }`;
 
       const newAlarmToSave = {
-        ring: $alarmModal.ring.value,
-        vibrate: $alarmModal.vibrate.value,
-        repeatAt: $alarmModal.repeat.value,
-        time: `${$alarmModal.leftWheel.value}:${$alarmModal.rightWheel.value}`,
-        name: $alarmModal.alarmName.value,
+        ring: ring.value,
+        vibrate: vibrate.value,
+        repeatAt: repeat.value,
+        time: `${leftWheel.value}:${rightWheel.value}`,
+        name: alarmName.value,
         active: true,
-        id:
-          id ||
-          `_id-r-${Math.round(Math.random() * 100)}-t-${new Date().getTime()}`,
+        id: id || generateId,
       };
 
       isEdit
         ? updateLocalData("alarm-data", newAlarmToSave, { id })
         : addLocalData("alarm-data", newAlarmToSave);
-      closeAlarmModal(modal, isEdit);
+
+      closeAlarmModal(isEdit);
       initAlarmInterface();
     },
   });
-
-  initWheelInEditModal("left");
-  initWheelInEditModal("right");
 
   useOn({
     typeEvent: "click",
@@ -174,15 +180,44 @@ const initAlarmEditModal = () => {
     callback: (e) => {
       e.preventDefault();
       const alarmId = getDataOfParent(e.target, "alarmId");
-      const isEdit = getDataOfParent(e.target, "alarmModalType");
+      const isEdit = getDataOfParent(e.target, "alarmModalType") === "edit";
 
       deleteLocalData("alarm-data", { id: alarmId });
-      closeAlarmModal(modal, isEdit);
+      closeAlarmModal(isEdit);
       initAlarmInterface();
+    },
+  });
+};
+
+const initAlarmSettingsModal = () => {
+  useOn({
+    typeEvent: "click",
+    selector: "button[data-alarm-button='settings']",
+    callback: () => {
+      modal.open({
+        children: CaAlarmSettingModal({}),
+        animation: "rightToLeft",
+        callback: () =>
+          $toolContainer.style.setProperty("transform", "translateX(-100vw)"),
+      });
+    },
+  });
+
+  useOn({
+    typeEvent: "click",
+    selector: "[data-alarm-button='close-modal']",
+    callback: ({ target }) => {
+      const modalType = getDataOfParent(target, "alarmModalType");
+      if (modalType !== "settings") return;
+
+      modal.close({
+        callback: () =>
+          $toolContainer.style.setProperty("transform", "translateX(0vw)"),
+      });
     },
   });
 };
 
 modal.insert();
 
-export { initAlarmEditModal };
+export { initAlarmEditModal, initAlarmSettingsModal };

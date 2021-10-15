@@ -35,6 +35,22 @@ class Modal {
   toggle() {
     this.modalReference.classList.toggle("modal--active");
   }
+
+  open({ children, animation, callback = () => null }) {
+    callback();
+    this.insertChildren(children);
+    this.changeAnimation(animation);
+    setTimeout(() => this.toggle(), 0);
+  }
+
+  close({ timeout = 200, callback = () => null }) {
+    callback();
+    this.toggle();
+    setTimeout(() => {
+      this.removeChildren();
+      this.changeAnimation(null);
+    }, timeout);
+  }
 }
 
 export default Modal;

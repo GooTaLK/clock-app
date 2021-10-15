@@ -8,11 +8,12 @@ const CaAlarmSettingModal = ({
   repeatInterval = defaultSettingsModalSet.repeatInterval,
   repeatTimes = defaultSettingsModalSet.repeatTimes,
 }) => {
-  const $container = document.createElement(".div");
-  const $content = document.createElement(".div");
+  const $container = document.createElement("div");
+  const $content = document.createElement("div");
   const $header = CaModalHeader({
     headerClass: "alarm-modal__settings",
     title: "Settings",
+    close: true,
   });
   const $settingDuration = CaModalOption("alarm-option__set-ring-duration", {
     type: "button",
@@ -22,8 +23,13 @@ const CaAlarmSettingModal = ({
   const $repeatSetting = CaModalOption("alarm-option__set-repeat-setting", {
     type: "button",
     text: "Repeat setting",
-    description: `Alarm interval of ${repeatInterval} min; automaticly silence after ${repeatTimes} times`,
+    description: `Alarm interval of <i>${repeatInterval}</i> min; automaticly silence after <i>${repeatTimes}</i> times`,
   });
+
+  $container.classList.add("alarm-modal");
+  $container.dataset.alarmModalType = "settings";
+
+  $content.classList.add("alarm-modal__content");
 
   $content.append($settingDuration, $repeatSetting);
   $container.append($header, $content);
