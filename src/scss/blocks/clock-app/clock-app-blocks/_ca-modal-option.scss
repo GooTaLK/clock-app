@@ -4,7 +4,8 @@
 
   &-btn,
   &-check-btn {
-    padding: 0 17px;
+    text-align: left;
+    padding: 17px;
     border: none;
     background-color: transparent;
     color: #ffffff;
@@ -15,6 +16,18 @@
     align-items: center;
     cursor: pointer;
     transition: color 0.1s;
+
+    div {
+      font-size: 14px;
+      max-width: 230px;
+    }
+
+    p {
+      font-size: 13px;
+      color: #9d9d9d;
+      margin-bottom: 0;
+      margin-top: 8px;
+    }
 
     &:hover {
       color: turquoise;
