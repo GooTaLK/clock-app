@@ -1,11 +1,12 @@
 const getDataOfParent = (target, data) => {
-  let parent = target;
+  let currentElement = target;
 
-  while (!parent.dataset[data]) {
-    parent = parent.parentElement;
+  while (!currentElement.dataset[data]) {
+    if (currentElement === document.body) return null;
+    currentElement = currentElement.parentElement;
   }
 
-  return parent.dataset[data];
+  return currentElement.dataset[data];
 };
 
 export default getDataOfParent;
