@@ -20,7 +20,7 @@ const initAlarmInterface = () => {
 
   $alarmContent.innerHTML = "";
 
-  if (!alarmData) {
+  if (!alarmData || alarmData.length === 0) {
     emptyAlarmContent();
     return;
   }
