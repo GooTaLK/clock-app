@@ -3,7 +3,6 @@ html {
   font-family: "Roboto", "system-ui", sans-serif;
   color: #ffffff;
   scroll-behavior: smooth;
-  box-sizing: border-box;
 }
 
 body {
@@ -11,4 +10,10 @@ body {
   background-color: #090909;
   min-height: 100vh;
   overflow-x: hidden;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
