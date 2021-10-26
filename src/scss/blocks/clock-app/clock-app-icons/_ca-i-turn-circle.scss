@@ -1,0 +1,29 @@
+.ca-i-turn_circle {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 1px solid #d3d3d3;
+
+  &::before {
+    content: "";
+    position: absolute;
+    display: block;
+    width: 8px;
+    height: 8px;
+    background-color: #dfdfdf;
+    border-radius: 50%;
+  }
+
+  &--active {
+    background-color: #21c4cd;
+    border-color: #1da8af;
+
+    &::before {
+      background-color: #ffffff;
+    }
+  }
+}

@@ -1,0 +1,44 @@
+.ca-i-check_circle {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 1px solid #d3d3d3;
+
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    display: block;
+    height: 1px;
+    background-color: #b3b3b3;
+    transform-origin: left;
+  }
+
+  &::before {
+    width: 4px;
+    top: 9px;
+    left: 5px;
+    transform: rotate(45deg);
+  }
+
+  &::after {
+    width: 9px;
+    top: 12px;
+    left: 7px;
+    transform: rotate(-45deg);
+  }
+
+  &--active {
+    background-color: #21c4cd;
+    border-color: #1da8af;
+
+    &::before,
+    &::after {
+      background-color: #ffffff;
+    }
+  }
+}
