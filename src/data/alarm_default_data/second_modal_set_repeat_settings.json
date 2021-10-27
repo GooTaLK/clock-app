@@ -1,0 +1,12 @@
+[
+  {
+    "text": "Alarm intervals (minutes)",
+    "intervals": ["5", "10", "15", "20", "25", "30"],
+    "dataset": "alarm intervals"
+  },
+  {
+    "text": "Ring before silence automaticly (times)",
+    "intervals": ["1", "3", "5", "10"],
+    "dataset": "ring times"
+  }
+]

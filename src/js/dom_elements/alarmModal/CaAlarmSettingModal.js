@@ -1,13 +1,7 @@
-import defaultSettingsModalSet from "../../../data/alarm/default_settings_modal_set.json";
-
 import CaModalHeader from "../modal/CaModalHeader";
 import CaModalOption from "../modal/CaModalOption";
 
-const CaAlarmSettingModal = ({
-  ringDuration = defaultSettingsModalSet.ringDuration,
-  repeatInterval = defaultSettingsModalSet.repeatInterval,
-  repeatTimes = defaultSettingsModalSet.repeatTimes,
-}) => {
+const CaAlarmSettingModal = ({ ringDuration, repeatInterval, repeatTimes }) => {
   const $container = document.createElement("div");
   const $content = document.createElement("div");
   const $header = CaModalHeader({

@@ -1,3 +1,11 @@
+import defaultAlarmModalAddSet from "../../data/alarm_default_data/modal_add_set.json";
+import defaultAlarmModalSettingsSet from "../../data/alarm_default_data/modal_settings_set.json";
+import defaultAlarmSecondModalEditRepeat from "../../data/alarm_default_data/second_modal_edit_repeat.json";
+import defaultAlarmSecondModalCustomRepeat from "../../data/alarm_default_data/second_modal_custom_repeat.json";
+import defaultAlarmSecondModalEditRing from "../../data/alarm_default_data/second_modal_edit_ring.json";
+import defaultAlarmSecondModalSetRingDuration from "../../data/alarm_default_data/second_modal_set_ring_duration.json";
+import defaultAlarmSecondModalSetRepeatSettings from "../../data/alarm_default_data/second_modal_set_repeat_settings.json";
+
 import useOn from "../helpers/use_on";
 import {
   addLocalData,
@@ -102,7 +110,7 @@ const initAlarmEditModal = () => {
 
       modal.open({
         children: CaAlarmEditModal({
-          isEdit: false,
+          ...defaultAlarmModalAddSet,
           time: { rotateOfLeft, rotateOfRight },
         }),
         animation: "botToTop",
@@ -169,29 +177,7 @@ const initAlarmEditModal = () => {
           title: "Repetir",
           content: {
             type: "options",
-            options: [
-              {
-                text: "Only one time",
-                value: "Only one time",
-                dataset: "alarm set repeat",
-                active: true,
-              },
-              {
-                text: "Monday to Friday",
-                value: "Monday to Friday",
-                dataset: "alarm set repeat",
-              },
-              {
-                text: "Every day",
-                value: "Every day",
-                dataset: "alarm set repeat",
-              },
-              {
-                text: "Custom",
-                value: "custom",
-                dataset: "alarm set custom repeat",
-              },
-            ],
+            options: defaultAlarmSecondModalEditRepeat,
           },
           buttons: [
             {
@@ -215,50 +201,7 @@ const initAlarmEditModal = () => {
           title: "Customize repeat",
           content: {
             type: "options",
-            options: [
-              {
-                text: "Sunday",
-                value: "sunday",
-                checkIcon: true,
-                dataset: "alarm set custom repeat",
-              },
-              {
-                text: "Monday",
-                value: "monday",
-                checkIcon: true,
-                dataset: "alarm set custom repeat",
-              },
-              {
-                text: "Tuesday",
-                value: "tuesday",
-                checkIcon: true,
-                dataset: "alarm set custom repeat",
-              },
-              {
-                text: "Wednesday",
-                value: "wednesday",
-                checkIcon: true,
-                dataset: "alarm set custom repeat",
-              },
-              {
-                text: "Thursday",
-                value: "thursday",
-                checkIcon: true,
-                dataset: "alarm set custom repeat",
-              },
-              {
-                text: "Friday",
-                value: "friday",
-                checkIcon: true,
-                dataset: "alarm set custom repeat",
-              },
-              {
-                text: "Saturday",
-                value: "saturday",
-                checkIcon: true,
-                dataset: "alarm set custom repeat",
-              },
-            ],
+            options: defaultAlarmSecondModalCustomRepeat,
           },
           buttons: [
             {
@@ -284,24 +227,7 @@ const initAlarmEditModal = () => {
           title: "Ring",
           content: {
             type: "options",
-            options: [
-              {
-                text: "Creamy",
-                value: "Creamy",
-                dataset: "alarm set ring",
-                active: true,
-              },
-              {
-                text: "Pollo a la brasa",
-                value: "Pollo a la brasa",
-                dataset: "alarm set ring",
-              },
-              {
-                text: "Toc toc",
-                value: "Toc toc",
-                dataset: "alarm set ring",
-              },
-            ],
+            options: defaultAlarmSecondModalEditRing,
           },
           buttons: [
             {
@@ -374,7 +300,7 @@ const initAlarmSettingsModal = () => {
     selector: "button[data-alarm-button='settings']",
     callback: () => {
       modal.open({
-        children: CaAlarmSettingModal({}),
+        children: CaAlarmSettingModal(defaultAlarmModalSettingsSet),
         animation: "rightToLeft",
       });
       moveToolContainerX("-100vw");
@@ -402,39 +328,7 @@ const initAlarmSettingsModal = () => {
           title: "Ring duration",
           content: {
             type: "options",
-            options: [
-              {
-                text: "1 minute",
-                value: 1,
-                dataset: "alarm set ring duration",
-              },
-              {
-                text: "5 minutes",
-                value: 5,
-                dataset: "alarm set ring duration",
-                active: true,
-              },
-              {
-                text: "10 minutes",
-                value: 10,
-                dataset: "alarm set ring duration",
-              },
-              {
-                text: "15 minutes",
-                value: 15,
-                dataset: "alarm set ring duration",
-              },
-              {
-                text: "20 minutes",
-                value: 20,
-                dataset: "alarm set ring duration",
-              },
-              {
-                text: "30 minutes",
-                value: 30,
-                dataset: "alarm set ring duration",
-              },
-            ],
+            options: defaultAlarmSecondModalSetRingDuration,
           },
           buttons: [
             {
@@ -457,18 +351,7 @@ const initAlarmSettingsModal = () => {
           title: "Repeat settings",
           content: {
             type: "ranges",
-            ranges: [
-              {
-                text: "Alarm intervals (minutes)",
-                intervals: ["5", "10", "15", "20", "25", "30"],
-                dataset: "alarm intervals",
-              },
-              {
-                text: "Ring before silence automaticly (times)",
-                intervals: ["1", "3", "5", "10"],
-                dataset: "ring times",
-              },
-            ],
+            ranges: defaultAlarmSecondModalSetRepeatSettings,
           },
           buttons: [
             { text: "Cancel", dataset: "close" },
@@ -489,7 +372,7 @@ const initAlarmSettingsModal = () => {
       const isActive = $optionTargeted.classList.contains(
         "ca-i-turn_circle--active"
       );
-      const actIfIsNotActive = (isActive) => {
+      const changeClassToActive = (isActive) => {
         if (isActive) return;
 
         const $optionActivated = document.querySelector(
@@ -499,7 +382,7 @@ const initAlarmSettingsModal = () => {
         $optionTargeted.classList.add("ca-i-turn_circle--active");
       };
 
-      actIfIsNotActive(isActive);
+      changeClassToActive(isActive);
       secondModal.close({});
     },
   });

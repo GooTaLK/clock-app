@@ -1,0 +1,33 @@
+[
+  {
+    "text": "1 minute",
+    "value": 1,
+    "dataset": "alarm set ring duration"
+  },
+  {
+    "text": "5 minutes",
+    "value": 5,
+    "dataset": "alarm set ring duration",
+    "active": true
+  },
+  {
+    "text": "10 minutes",
+    "value": 10,
+    "dataset": "alarm set ring duration"
+  },
+  {
+    "text": "15 minutes",
+    "value": 15,
+    "dataset": "alarm set ring duration"
+  },
+  {
+    "text": "20 minutes",
+    "value": 20,
+    "dataset": "alarm set ring duration"
+  },
+  {
+    "text": "30 minutes",
+    "value": 30,
+    "dataset": "alarm set ring duration"
+  }
+]

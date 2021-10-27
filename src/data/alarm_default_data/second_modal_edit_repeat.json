@@ -1,0 +1,23 @@
+[
+  {
+    "text": "Only one time",
+    "value": "Only one time",
+    "dataset": "alarm set repeat",
+    "active": true
+  },
+  {
+    "text": "Monday to Friday",
+    "value": "Monday to Friday",
+    "dataset": "alarm set repeat"
+  },
+  {
+    "text": "Every day",
+    "value": "Every day",
+    "dataset": "alarm set repeat"
+  },
+  {
+    "text": "Custom",
+    "value": "custom",
+    "dataset": "alarm set custom repeat"
+  }
+]

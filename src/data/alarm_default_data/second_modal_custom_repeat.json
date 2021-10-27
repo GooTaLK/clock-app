@@ -1,0 +1,44 @@
+[
+  {
+    "text": "Sunday",
+    "value": "sunday",
+    "checkIcon": true,
+    "dataset": "alarm set custom repeat"
+  },
+  {
+    "text": "Monday",
+    "value": "monday",
+    "checkIcon": true,
+    "dataset": "alarm set custom repeat"
+  },
+  {
+    "text": "Tuesday",
+    "value": "tuesday",
+    "checkIcon": true,
+    "dataset": "alarm set custom repeat"
+  },
+  {
+    "text": "Wednesday",
+    "value": "wednesday",
+    "checkIcon": true,
+    "dataset": "alarm set custom repeat"
+  },
+  {
+    "text": "Thursday",
+    "value": "thursday",
+    "checkIcon": true,
+    "dataset": "alarm set custom repeat"
+  },
+  {
+    "text": "Friday",
+    "value": "friday",
+    "checkIcon": true,
+    "dataset": "alarm set custom repeat"
+  },
+  {
+    "text": "Saturday",
+    "value": "saturday",
+    "checkIcon": true,
+    "dataset": "alarm set custom repeat"
+  }
+]

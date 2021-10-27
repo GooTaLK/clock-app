@@ -1,17 +1,15 @@
-import defaultEditModalSet from "../../../data/alarm/default_edit_modal_set.json";
-
 import CaModalHeader from "../modal/CaModalHeader";
 import CaModalOption from "../modal/CaModalOption";
 import CaAlarmModalEditTime from "./CaAlarmModalEditTime";
 
 const CaAlarmEditModal = ({
-  isEdit = defaultEditModalSet.isEdit,
-  id = defaultEditModalSet.id,
-  time = defaultEditModalSet.time,
-  repeat = defaultEditModalSet.repeat,
-  ring = defaultEditModalSet.ring,
-  vibrate = defaultEditModalSet.vibrate,
-  name = defaultEditModalSet.name,
+  isEdit,
+  id,
+  time,
+  repeat,
+  ring,
+  vibrate,
+  name,
 }) => {
   const $container = document.createElement("div");
   const $content = document.createElement("form");
