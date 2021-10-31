@@ -2,11 +2,7 @@ import {
   initAlarmInterface,
   initAlarmListeners,
 } from "./modules/alarm_interface.js";
-import {
-  initAlarmEditModal,
-  initAlarmSettingsModal,
-  initAlarmSecondModal,
-} from "./modules/modal.js";
+import initModals from "./modules/modal.js";
 import {
   initClockDisplay,
   initClockSettings,
@@ -26,9 +22,7 @@ const app = () => {
   initClockSettings();
   initAlarmInterface();
   initAlarmListeners();
-  initAlarmEditModal();
-  initAlarmSettingsModal();
-  initAlarmSecondModal();
+  initModals();
 
   headerMenu();
   changeBackgroundBtn();
