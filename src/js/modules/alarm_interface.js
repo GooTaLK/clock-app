@@ -25,11 +25,13 @@ const initAlarmInterface = () => {
     return;
   }
 
-  alarmData.reverse().forEach(({ time, repeatAt, name, active, id }) => {
-    $alarmContent.appendChild(
-      CaAlarmCard({ time, name, repeatAt, active, id })
-    );
-  });
+  alarmData
+    .reverse()
+    .forEach(({ time, repeat, customRepeat, name, active, id }) => {
+      $alarmContent.appendChild(
+        CaAlarmCard({ time, name, repeat, customRepeat, active, id })
+      );
+    });
   $alarmContent.classList.remove("alarm-content--empty");
   $alarmButtons.classList.remove("display-none");
 };

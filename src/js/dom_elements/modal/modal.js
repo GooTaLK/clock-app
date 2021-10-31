@@ -39,12 +39,12 @@ class Modal {
   open({ children, animation, next = () => null }) {
     this.insertChildren(children);
     this.changeAnimation(animation);
-    setTimeout(() => this.toggle(), 0);
+    setTimeout(() => this.modalReference.classList.add("modal--active"), 0);
     next();
   }
 
   close({ timeout = 200, next = () => null }) {
-    this.toggle();
+    this.modalReference.classList.remove("modal--active");
     setTimeout(() => {
       this.removeChildren();
       this.changeAnimation(null);

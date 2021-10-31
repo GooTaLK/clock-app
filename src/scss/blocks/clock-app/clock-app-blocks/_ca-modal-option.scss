@@ -17,6 +17,10 @@
     cursor: pointer;
     transition: color 0.1s;
 
+    * {
+      pointer-events: none;
+    }
+
     div {
       font-size: 14px;
       max-width: 230px;
@@ -27,6 +31,20 @@
       color: #9d9d9d;
       margin-bottom: 0;
       margin-top: 8px;
+    }
+
+    i {
+      max-width: 150px;
+      text-align: right;
+      font-style: normal;
+
+      span {
+        overflow-x: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        display: inline-block;
+        width: 100%;
+      }
     }
 
     &:hover {

@@ -7,8 +7,7 @@
   {
     "text": "5 minutes",
     "value": 5,
-    "dataset": "alarm set ring duration",
-    "active": true
+    "dataset": "alarm set ring duration"
   },
   {
     "text": "10 minutes",

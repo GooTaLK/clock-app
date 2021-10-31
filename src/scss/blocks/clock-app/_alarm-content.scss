@@ -47,11 +47,22 @@
     &__content {
       color: #8d9394;
       padding: 21px 0;
+      margin-right: 20px;
     }
 
     &__time {
       font-size: 25px;
       display: block;
+    }
+
+    &__details {
+      margin: 0;
+      display: inline-block;
+
+      span.alarm-custom-repeat-text {
+        display: block;
+        margin-top: 10px;
+      }
     }
   }
 }

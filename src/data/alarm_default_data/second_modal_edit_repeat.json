@@ -2,8 +2,7 @@
   {
     "text": "Only one time",
     "value": "Only one time",
-    "dataset": "alarm set repeat",
-    "active": true
+    "dataset": "alarm set repeat"
   },
   {
     "text": "Monday to Friday",
@@ -18,6 +17,6 @@
   {
     "text": "Custom",
     "value": "custom",
-    "dataset": "alarm set custom repeat"
+    "dataset": "alarm set custom repeat button"
   }
 ]

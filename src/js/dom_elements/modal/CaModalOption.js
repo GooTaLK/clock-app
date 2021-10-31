@@ -19,6 +19,7 @@ const CaModalOption = (
     case "button":
       const $button = document.createElement("button");
       const $content = document.createElement("div");
+      const $i = document.createElement("i");
       const $span = document.createElement("span");
 
       $button.classList.add("ca-modal-option-btn");
@@ -27,7 +28,8 @@ const CaModalOption = (
 
       $content.textContent = text;
 
-      $span.classList.add("ca-i-chevron");
+      $i.classList.add("ca-i-chevron");
+
       chevronText && ($span.textContent = chevronText);
 
       if (description) {
@@ -36,7 +38,8 @@ const CaModalOption = (
         $content.appendChild($p);
       }
 
-      $button.append($content, $span);
+      $i.appendChild($span);
+      $button.append($content, $i);
       $optionContainer.appendChild($button);
 
       return $optionContainer;

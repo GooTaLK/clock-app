@@ -12,8 +12,10 @@ const CaSecondModal = ({
         active: Boolean,
       },
     ],
-    ranges: [{ text: String, intervals: [String], dataset: String }],
-    input: { value: String },
+    ranges: [
+      { text: String, intervals: [String], dataset: String, value: Number },
+    ],
+    input: { value: String, className: String },
   },
   buttons = [{ text: String, className: String, dataset: String }],
 }) => {
@@ -59,7 +61,7 @@ const CaSecondModal = ({
         $frameContent.dataset.secondModalType = "options";
       },
       ranges: () => {
-        content.ranges.forEach(({ text, intervals, dataset }) => {
+        content.ranges.forEach(({ text, intervals, dataset, value }) => {
           const $rangeContainer = document.createElement("div");
           const $label = document.createElement("label");
           const $range = document.createElement("button");
@@ -71,6 +73,7 @@ const CaSecondModal = ({
           $label.textContent = text;
 
           $range.classList.add("ca-range_input");
+          $range.value = value;
 
           $intervals.classList.add("ca-sm-intervals");
           intervals.forEach((intervalText) => {
@@ -88,6 +91,8 @@ const CaSecondModal = ({
       input: () => {
         const $input = document.createElement("input");
 
+        content.input.className &&
+          $input.classList.add(content.input.className);
         $input.value = content.input.value;
 
         $frameContent.appendChild($input);

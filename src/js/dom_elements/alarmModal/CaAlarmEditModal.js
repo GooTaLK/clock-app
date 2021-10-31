@@ -1,3 +1,5 @@
+import { capitalize } from "../../helpers/capitalize";
+
 import CaModalHeader from "../modal/CaModalHeader";
 import CaModalOption from "../modal/CaModalOption";
 import CaAlarmModalEditTime from "./CaAlarmModalEditTime";
@@ -13,6 +15,11 @@ const CaAlarmEditModal = ({
 }) => {
   const $container = document.createElement("div");
   const $content = document.createElement("form");
+  const repeatText = repeat
+    .split(";")
+    .map((value) => capitalize(value))
+    .join(", ");
+
   const $header = CaModalHeader({
     headerClass: "alarm-modal__header",
     title: isEdit ? "Edit alarm" : "Add alarm",
@@ -28,7 +35,7 @@ const CaAlarmEditModal = ({
     name: "repeat",
     text: "Repeat",
     value: repeat,
-    chevronText: repeat,
+    chevronText: repeatText,
   });
   const $editRing = CaModalOption("alarm-option__edit-ring", {
     type: "button",

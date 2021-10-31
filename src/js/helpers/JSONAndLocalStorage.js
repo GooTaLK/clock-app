@@ -38,6 +38,14 @@ const updateLocalData = (key, newData, filter) => {
     localStorage.setItem(key, JSON.stringify([...restOfData, ...updateData]));
 };
 
+const updateAllLocalData = (key, newData) => {
+  const data = getLocalData(key);
+  const updateData = data.map((obj) => {
+    return { ...obj, ...newData };
+  });
+  localStorage.setItem(key, JSON.stringify(updateData));
+};
+
 const deleteLocalData = (key, filter) => {
   const data = getLocalData(key);
 
@@ -61,5 +69,6 @@ export {
   getOneLocalDataById,
   addLocalData,
   updateLocalData,
+  updateAllLocalData,
   deleteLocalData,
 };
