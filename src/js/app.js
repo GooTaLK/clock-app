@@ -1,11 +1,8 @@
-import {
-  initAlarmInterface,
-  initAlarmListeners,
-} from "./modules/alarm_interface.js";
+import { initAlarmInterface } from "./modules/alarm_interface.js";
 import initModals from "./modules/modal.js";
 import {
-  initClockDisplay,
-  initClockSettings,
+  initClockAndAlarm,
+  initClockFormat,
   clockSettings,
 } from "./modules/clock.js";
 import {
@@ -15,11 +12,12 @@ import {
 } from "./modules/header_funtionalities";
 import { navBtns } from "./modules/nav_interactions";
 import "./modules/input_range";
+import { initAlarmListeners } from "./modules/alarm.js";
 
 const app = () => {
   initHeaderBackground();
-  initClockDisplay();
-  initClockSettings();
+  initClockFormat();
+  initClockAndAlarm();
   initAlarmInterface();
   initAlarmListeners();
   initModals();

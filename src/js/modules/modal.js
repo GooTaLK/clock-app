@@ -73,4 +73,6 @@ const initModals = () => {
 modal.insert();
 secondModal.insert();
 
+export { modal, secondModal };
+
 export default initModals;

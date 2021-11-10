@@ -3,6 +3,8 @@ import clockDefaultFormat from "../../data/clock/clock_default_format.json";
 import useOn from "../helpers/use_on.js";
 import { formatTo12h, formatTo24h } from "../helpers/date_formater.js";
 
+import { checkAlarms } from "./alarm";
+
 const clockState = {
   timeToShow: null,
   formatType: clockDefaultFormat.formatType,
@@ -35,6 +37,7 @@ const initClockAndAlarm = () => {
   updateClock();
   setInterval(() => {
     updateClock();
+    checkAlarms();
   }, 1000);
 };
 

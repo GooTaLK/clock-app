@@ -1,5 +1,4 @@
-import useOn from "../helpers/use_on";
-import { getLocalData, updateLocalData } from "../helpers/JSONAndLocalStorage";
+import { getLocalData } from "../helpers/JSONAndLocalStorage";
 
 import CaAlarmCard from "../dom_elements/CaAlarmCard";
 import AlarmEmptyContent from "../dom_elements/CaAlarmEmptyContent";
@@ -36,19 +35,4 @@ const initAlarmInterface = () => {
   $alarmButtons.classList.remove("display-none");
 };
 
-const initAlarmListeners = () => {
-  useOn({
-    typeEvent: "click",
-    selector: ".alarm-content__card .ca-i-switch",
-    callback: ({ target }) => {
-      const isActive = target.classList.contains("ca-i-switch--active");
-      const alarmId = target.parentElement.dataset.alarmId;
-
-      target.classList.toggle("ca-i-switch--active");
-      target.parentElement.classList.toggle("alarm-content__card--active");
-      updateLocalData("alarm-data", { active: !isActive }, { id: alarmId });
-    },
-  });
-};
-
-export { initAlarmInterface, initAlarmListeners };
+export { initAlarmInterface };

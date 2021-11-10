@@ -20,6 +20,7 @@ import { capitalize } from "../helpers/capitalize";
 import CaAlarmEditModal from "../dom_elements/alarmModal/CaAlarmEditModal";
 import initWheelInEditModal, { wheels } from "./wheels_in_alarm_edit_time";
 import { initAlarmInterface } from "./alarm_interface";
+import { alarmState, updateAllAlarmState } from "./alarm";
 
 const initAlarmEditModal = ({
   modal,
@@ -178,9 +179,17 @@ const initAlarmEditModal = ({
         id: id || generateId,
       };
 
-      isEdit
-        ? updateLocalData("alarm-data", newAlarmToSave, { id })
-        : addLocalData("alarm-data", newAlarmToSave);
+      if (isEdit) {
+        const newAlarmState = alarmState.map((alarm) =>
+          alarm.id === id ? newAlarmToSave : alarm
+        );
+
+        updateLocalData("alarm-data", newAlarmToSave, { id });
+        updateAllAlarmState(newAlarmState);
+      } else {
+        addLocalData("alarm-data", newAlarmToSave);
+        alarmState.push(newAlarmToSave);
+      }
 
       closeAlarmModal(isEdit);
       initAlarmInterface();
@@ -469,8 +478,10 @@ const initAlarmEditModal = ({
       e.preventDefault();
       const alarmId = getDataOfParent(e.target, "alarmId");
       const isEdit = getDataOfParent(e.target, "alarmModalType") === "edit";
+      const newAlarmState = alarmState.filter((alarm) => alarm.id !== alarmId);
 
       deleteLocalData("alarm-data", { id: alarmId });
+      updateAllAlarmState(newAlarmState);
       closeAlarmModal(isEdit);
       initAlarmInterface();
     },
