@@ -1,7 +1,7 @@
 // Import of main css
 import "./scss/styles.scss";
 
-// Import of images in the index.html
+// Import of assets in the index.html
 import "./assets/images/GitHub-Mark-32px.png";
 import "./assets/images/background_imgs/min_resolution/forest-5855196_640.jpg";
 import "./assets/images/background_imgs/min_resolution/halloween-2837936_640-compr.png";
@@ -21,6 +21,9 @@ import "./assets/svg_icons/Play.svg";
 import "./assets/svg_icons/Plus.svg";
 import "./assets/svg_icons/Square.svg";
 import "./assets/svg_icons/Clock.svg";
+import "./assets/alarm_sounds/toc-toc.mp3";
+import "./assets/alarm_sounds/conan-main-theme.mp3";
+import "./assets/alarm_sounds/super-mario-bros.mp3";
 
 // Import app.js
 import app from "./js/app";

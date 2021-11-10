@@ -1,6 +1,2 @@
 node_modules
 dist
-
-# remove redux
-redux_actions
-redux_stores
