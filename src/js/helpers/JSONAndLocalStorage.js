@@ -19,23 +19,23 @@ const addLocalData = (key, newData) => {
 
 const updateLocalData = (key, newData, filter) => {
   const data = getLocalData(key);
-  const updateData = [];
-
-  const restOfData = data.filter((obj) => {
-    let objAgree = false;
+  let didUpdated = false;
+  const updateData = data.map((obj) => {
+    const passFilter = [];
 
     for (const key in filter) {
-      if (obj.hasOwnProperty(key) && obj[key] === filter[key]) {
-        updateData.push({ ...obj, ...newData });
-        objAgree = true;
-      }
+      obj.hasOwnProperty(key) && obj[key] === filter[key]
+        ? passFilter.push(true)
+        : passFilter.push(false);
     }
 
-    return !objAgree;
+    if (passFilter.includes(false)) return obj;
+
+    didUpdated = true;
+    return { ...obj, ...newData };
   });
 
-  if (updateData.length !== 0)
-    localStorage.setItem(key, JSON.stringify([...restOfData, ...updateData]));
+  if (didUpdated) localStorage.setItem(key, JSON.stringify(updateData));
 };
 
 const updateAllLocalData = (key, newData) => {
@@ -48,20 +48,23 @@ const updateAllLocalData = (key, newData) => {
 
 const deleteLocalData = (key, filter) => {
   const data = getLocalData(key);
-
+  let didUpdated = false;
   const restOfData = data.filter((obj) => {
-    let objAgree = false;
+    const passFilter = [];
 
     for (const key in filter) {
-      if (obj.hasOwnProperty(key) && obj[key] === filter[key]) {
-        objAgree = true;
-      }
+      obj.hasOwnProperty(key) && obj[key] === filter[key]
+        ? passFilter.push(true)
+        : passFilter.push(false);
     }
 
-    return !objAgree;
+    if (passFilter.includes(false)) return true;
+
+    didUpdated = true;
+    return false;
   });
 
-  localStorage.setItem(key, JSON.stringify(restOfData));
+  if (didUpdated) localStorage.setItem(key, JSON.stringify(restOfData));
 };
 
 export {
