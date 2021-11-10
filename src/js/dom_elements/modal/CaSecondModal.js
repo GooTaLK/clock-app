@@ -3,6 +3,7 @@ const CaSecondModal = ({
   content = {
     type: String,
     text: String,
+    html: String,
     options: [
       {
         text: String,
@@ -26,7 +27,7 @@ const CaSecondModal = ({
   const $btnGroup = document.createElement("div");
 
   const createContent = (type) => {
-    const allowTypes = ["text", "options", "ranges", "input"];
+    const allowTypes = ["text", "html", "options", "ranges", "input"];
     if (!allowTypes.includes(type)) return;
 
     const typeFunctions = {
@@ -34,6 +35,12 @@ const CaSecondModal = ({
         $frameContent.textContent = content.text;
         $frameContent.dataset.secondModalType = "text";
       },
+
+      html: () => {
+        $frameContent.innerHTML = content.html;
+        $frameContent.dataset.secondModalType = "html";
+      },
+
       options: () => {
         content.options.forEach(
           ({ text, value, dataset, checkIcon, active = false }) => {
@@ -60,6 +67,7 @@ const CaSecondModal = ({
 
         $frameContent.dataset.secondModalType = "options";
       },
+
       ranges: () => {
         content.ranges.forEach(({ text, intervals, dataset, value }) => {
           const $rangeContainer = document.createElement("div");
@@ -88,6 +96,7 @@ const CaSecondModal = ({
 
         $frameContent.dataset.secondModalType = "ranges";
       },
+
       input: () => {
         const $input = document.createElement("input");
 
