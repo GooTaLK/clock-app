@@ -11,15 +11,20 @@ const clockState = {
 };
 
 const $clock = document.querySelectorAll(".display-clock");
-const $setFormatBtn = document.querySelector(".change-clock-format");
+const $setFormatBtn = document.querySelectorAll(".change-clock-format");
+const $clockBackground = document.getElementById("clockBackground");
 
 const setClockFormat = (format) => {
   if (format === "24h") {
     clockState.formatType = "24h";
-    $setFormatBtn.classList.add("lk-check_btn--active");
+    $setFormatBtn.forEach((button) =>
+      button.classList.add("lk-check_btn--active")
+    );
   } else if (format === "12h") {
     clockState.formatType = "12h";
-    $setFormatBtn.classList.remove("lk-check_btn--active");
+    $setFormatBtn.forEach((button) =>
+      button.classList.remove("lk-check_btn--active")
+    );
   }
 };
 
@@ -30,11 +35,34 @@ const updateClock = () => {
       : formatTo12h(new Date(), { allowSeconds: false });
 
   const currentTime = clockState.timeToShow;
-  $clock.forEach((el) => (el.textContent = currentTime));
+  $clock.forEach((el) => {
+    if (
+      !el.classList.contains("header__clock") &&
+      clockState.formatType !== "24h"
+    ) {
+      const timeSplit = currentTime.split(" ");
+      el.innerHTML = `${timeSplit[0]}<span> ${timeSplit[1]}</span>`;
+      return;
+    }
+
+    el.textContent = currentTime;
+  });
+};
+
+const rotateEffect = (el, deg) =>
+  el.style.setProperty("transform", `rotate(${deg}deg)`);
+
+const setBorderEffect = () => {
+  const time = new Date().toLocaleTimeString();
+  const seconds = time.match(/:\d{1,2}$/)[0].replace(":", "");
+  const deg = 6 * seconds;
+
+  rotateEffect($clockBackground, deg);
 };
 
 const initClockAndAlarm = () => {
   updateClock();
+  setBorderEffect();
   setInterval(() => {
     updateClock();
     checkAlarms();
@@ -43,13 +71,11 @@ const initClockAndAlarm = () => {
 
 const initClockFormat = () => {
   const clockFormat = localStorage.getItem("clock-format");
-  if (clockFormat === undefined)
-    return setClockFormat(clockState.formatType)(clockFormat === "12h")
-      ? setClockFormat("12h")
-      : setClockFormat("24h");
+  if (clockFormat === undefined) return setClockFormat(clockState.formatType);
+  clockFormat === "12h" ? setClockFormat("12h") : setClockFormat("24h");
 };
 
-const clockSettings = () => {
+const initClockListeners = () => {
   useOn({
     typeEvent: "click",
     selector: ".change-clock-format",
@@ -69,4 +95,4 @@ const clockSettings = () => {
   });
 };
 
-export { initClockAndAlarm, initClockFormat, clockSettings, clockState };
+export { initClockAndAlarm, initClockFormat, initClockListeners, clockState };

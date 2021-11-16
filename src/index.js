@@ -21,6 +21,7 @@ import "./assets/svg_icons/Play.svg";
 import "./assets/svg_icons/Plus.svg";
 import "./assets/svg_icons/Square.svg";
 import "./assets/svg_icons/Clock.svg";
+import "./assets/images/star-wheel_3deg.svg";
 import "./assets/alarm_sounds/toc-toc.mp3";
 import "./assets/alarm_sounds/conan-main-theme.mp3";
 import "./assets/alarm_sounds/super-mario-bros.mp3";

@@ -3,7 +3,7 @@ import initModals from "./modules/modal.js";
 import {
   initClockAndAlarm,
   initClockFormat,
-  clockSettings,
+  initClockListeners,
 } from "./modules/clock.js";
 import {
   initHeaderBackground,
@@ -21,10 +21,10 @@ const app = () => {
   initAlarmInterface();
   initAlarmListeners();
   initModals();
+  initClockListeners();
 
   headerMenu();
   changeBackgroundBtn();
-  clockSettings();
   navBtns();
 };
 

@@ -23,8 +23,8 @@ const CaAlarmEditModal = ({
   const $header = CaModalHeader({
     headerClass: "alarm-modal__header",
     title: isEdit ? "Edit alarm" : "Add alarm",
-    close: true,
-    check: true,
+    close: { exist: true, dataName: "alarmButton", dataValue: "close-modal" },
+    check: { exist: true, dataName: "alarmButton", dataValue: "save" },
   });
   const $editTime = CaModalOption("alarm-option__edit-time", {
     type: "children",

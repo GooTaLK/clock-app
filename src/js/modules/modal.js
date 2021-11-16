@@ -5,6 +5,7 @@ import CaSecondModal from "../dom_elements/modal/CaSecondModal";
 import initAlarmEditModal from "./alarm_edit_modal";
 import initAlarmSettingsModal from "./alarm_settings_modal";
 import initSecondModal from "./second_modal";
+import initClockSettingsModal from "./clock_settings_modal";
 
 const $toolContainer = document.querySelector(".tools-container");
 const modal = new Modal(".main");
@@ -19,6 +20,7 @@ const moveToolContainerX = (value) =>
   $toolContainer.style.setProperty("transform", `translateX(${value})`);
 
 const insertValuesInDefault = (defaultData, values, newProp) => {
+  // modifyOptionSet
   const newData = defaultData.map((obj) => {
     const newObj = values.includes(obj.value) ? { ...obj, ...newProp } : obj;
     return newObj;
@@ -28,6 +30,7 @@ const insertValuesInDefault = (defaultData, values, newProp) => {
 };
 
 const setValueFromOption = ({ target, buttonSelector, valueTag }) => {
+  // changeOption
   const $icon = target.querySelector(".ca-i-turn_circle");
   const isActive = $icon.classList.contains("ca-i-turn_circle--active");
 
@@ -46,6 +49,17 @@ const setValueFromOption = ({ target, buttonSelector, valueTag }) => {
   $innerText.textContent = value;
 
   return isActive;
+};
+
+const toggleSwitchOption = (target) => {
+  const $switch = target.querySelector(".ca-i-switch");
+  const isOn = target.value === "On";
+  const newValue = isOn ? "Off" : "On";
+
+  $switch.classList.toggle("ca-i-switch--active");
+  target.value = newValue;
+
+  return newValue;
 };
 
 const initModals = () => {
@@ -67,6 +81,7 @@ const initModals = () => {
     insertValuesInDefault,
     moveToolContainerX,
   });
+  initClockSettingsModal({ modal, moveToolContainerX });
   initSecondModal({ secondModal });
 };
 

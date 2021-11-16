@@ -7,7 +7,7 @@ const CaAlarmSettingModal = ({ ringDuration, repeatInterval, repeatTimes }) => {
   const $header = CaModalHeader({
     headerClass: "alarm-modal__settings",
     title: "Settings",
-    close: true,
+    close: { exist: true, dataName: "alarmButton", dataValue: "close-modal" },
   });
   const $settingDuration = CaModalOption("alarm-option__set-ring-duration", {
     type: "button",

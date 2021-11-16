@@ -9,7 +9,7 @@ import {
   updateAllLocalData,
 } from "../helpers/JSONAndLocalStorage";
 
-import CaAlarmSettingModal from "../dom_elements/alarmModal/CaAlarmSettingModal";
+import CaAlarmSettingsModal from "../dom_elements/alarmModal/CaAlarmSettingsModal";
 
 const initAlarmSettingsModal = ({
   modal,
@@ -29,7 +29,7 @@ const initAlarmSettingsModal = ({
       const settingsSet = getLocalData("alarm-settings-set")[0];
 
       modal.open({
-        children: CaAlarmSettingModal(settingsSet),
+        children: CaAlarmSettingsModal(settingsSet),
         animation: "rightToLeft",
       });
       moveToolContainerX("-100vw");

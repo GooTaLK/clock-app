@@ -63,7 +63,7 @@ const CaModalOption = (
       return $optionContainer;
 
     default:
-      $optionContainer.textContent = "No cshild";
+      $optionContainer.textContent = "No child";
       return $optionContainer;
   }
 };
