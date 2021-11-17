@@ -13,7 +13,7 @@ const CaClockSettingsModal = () => {
   const $formatOption = CaModalOption("clock-option__set-format", {
     type: "switchButton",
     text: "Format 24h",
-    value: clockState.formatType === "24h" ? "on" : "off",
+    value: clockState.formatType === "24h" ? "On" : "Off",
   });
 
   $container.classList.add("clock-modal");

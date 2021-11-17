@@ -5,6 +5,7 @@
   display: grid;
   place-items: center;
   margin: 12px auto;
+  pointer-events: none;
 
   .clock {
     &__background,

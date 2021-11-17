@@ -3,6 +3,7 @@ import defaultBackgroundImg from "../../data/background_default_img.json";
 
 import useOn from "../helpers/use_on";
 import Figure from "../dom_elements/Figure";
+import { toggleClockFormat } from "./clock";
 
 const $header = document.querySelector(".header");
 const $headerOptionBtn = document.querySelector(".header__options-btn");
@@ -10,6 +11,7 @@ const $headerOptionMenu = document.querySelector(".header__options-menu");
 const $menuHamburgerIcon = document.querySelector(".lki-three_bars");
 const $changeBackgroundBtn = document.querySelector(".change-background-btn");
 const $chevronIcon = document.querySelector(".lki-chevron_down");
+const $setFormatBtn = document.querySelectorAll(".change-clock-format");
 
 const setBackgroundImageWithId = (dataImgId) => {
   const matchingData = backgroundData.filter(
@@ -113,4 +115,27 @@ const changeBackgroundBtn = () => {
   });
 };
 
-export { initHeaderBackground, headerMenu, changeBackgroundBtn };
+const switchClockFormat = () => {
+  useOn({
+    typeEvent: "click",
+    selector: ".change-clock-format",
+    callback: () =>
+      toggleClockFormat({
+        if24h: () =>
+          $setFormatBtn.forEach((button) =>
+            button.classList.add("lk-check_btn--active")
+          ),
+        if12h: () =>
+          $setFormatBtn.forEach((button) =>
+            button.classList.remove("lk-check_btn--active")
+          ),
+      }),
+  });
+};
+
+export {
+  initHeaderBackground,
+  headerMenu,
+  changeBackgroundBtn,
+  switchClockFormat,
+};

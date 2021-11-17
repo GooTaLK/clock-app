@@ -1,6 +1,7 @@
 import useOn from "../helpers/use_on";
 
 import CaClockSettingsModal from "../dom_elements/clockModal/CaClockSettingsModal";
+import { toggleClockFormat } from "./clock";
 
 const initClockSettingsModal = ({
   modal,
@@ -33,7 +34,7 @@ const initClockSettingsModal = ({
     selector: ".clock-option__set-format button",
     callback: ({ target }) => {
       toggleSwitchOption(target);
-      // definir cambios en el estado: usar localstorage o un estado local
+      toggleClockFormat();
     },
   });
 };

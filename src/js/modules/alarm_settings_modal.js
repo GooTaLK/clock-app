@@ -16,8 +16,8 @@ const initAlarmSettingsModal = ({
   secondModal,
   CaSecondModal,
   initDefaultData,
-  setValueFromOption,
-  insertValuesInDefault,
+  changeOption,
+  modifyOptionSet,
   moveToolContainerX,
 }) => {
   initDefaultData("alarm-settings-set", defaultAlarmModalSettingsSet);
@@ -53,7 +53,7 @@ const initAlarmSettingsModal = ({
     selector: ".alarm-option__set-ring-duration button",
     callback: ({ target }) => {
       const value = Number(target.value);
-      const ringSetOptions = insertValuesInDefault(
+      const ringSetOptions = modifyOptionSet(
         defaultAlarmSecondModalSetRingDuration,
         [value],
         { active: true }
@@ -82,7 +82,7 @@ const initAlarmSettingsModal = ({
     typeEvent: "click",
     selector: "[data-sm-option='alarm set ring duration']",
     callback: ({ target }) => {
-      const isActive = setValueFromOption({
+      const isActive = changeOption({
         target,
         buttonSelector: ".alarm-option__set-ring-duration button",
         valueTag: "i",

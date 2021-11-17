@@ -1,6 +1,5 @@
 import clockDefaultFormat from "../../data/clock/clock_default_format.json";
 
-import useOn from "../helpers/use_on.js";
 import { formatTo12h, formatTo24h } from "../helpers/date_formater.js";
 
 import { checkAlarms } from "./alarm";
@@ -11,20 +10,31 @@ const clockState = {
 };
 
 const $clock = document.querySelectorAll(".display-clock");
-const $setFormatBtn = document.querySelectorAll(".change-clock-format");
 const $clockBackground = document.getElementById("clockBackground");
 
 const setClockFormat = (format) => {
   if (format === "24h") {
     clockState.formatType = "24h";
-    $setFormatBtn.forEach((button) =>
-      button.classList.add("lk-check_btn--active")
-    );
+    localStorage.setItem("clock-format", "24h");
   } else if (format === "12h") {
     clockState.formatType = "12h";
-    $setFormatBtn.forEach((button) =>
-      button.classList.remove("lk-check_btn--active")
-    );
+    localStorage.setItem("clock-format", "12h");
+  }
+
+  updateClock();
+};
+
+const toggleClockFormat = (
+  params = { if24h: () => null, if12h: () => null }
+) => {
+  const is12hFormat = clockState.formatType === "12h";
+
+  if (is12hFormat) {
+    setClockFormat("24h");
+    params.if24h();
+  } else {
+    setClockFormat("12h");
+    params.if12h();
   }
 };
 
@@ -75,24 +85,11 @@ const initClockFormat = () => {
   clockFormat === "12h" ? setClockFormat("12h") : setClockFormat("24h");
 };
 
-const initClockListeners = () => {
-  useOn({
-    typeEvent: "click",
-    selector: ".change-clock-format",
-    callback: () => {
-      const is12hFormat = clockState.formatType === "12h";
-
-      if (is12hFormat) {
-        setClockFormat("24h");
-        localStorage.setItem("clock-format", "24h");
-      } else {
-        setClockFormat("12h");
-        localStorage.setItem("clock-format", "12h");
-      }
-
-      updateClock();
-    },
-  });
+export {
+  initClockAndAlarm,
+  initClockFormat,
+  setClockFormat,
+  toggleClockFormat,
+  updateClock,
+  clockState,
 };
-
-export { initClockAndAlarm, initClockFormat, initClockListeners, clockState };

@@ -1,18 +1,16 @@
-import { initAlarmInterface } from "./modules/alarm_interface.js";
-import initModals from "./modules/modal.js";
-import {
-  initClockAndAlarm,
-  initClockFormat,
-  initClockListeners,
-} from "./modules/clock.js";
 import {
   initHeaderBackground,
   headerMenu,
   changeBackgroundBtn,
+  switchClockFormat,
 } from "./modules/header_funtionalities";
 import { navBtns } from "./modules/nav_interactions";
-import "./modules/input_range";
+import { initClockAndAlarm, initClockFormat } from "./modules/clock.js";
+import { initAlarmInterface } from "./modules/alarm_interface.js";
 import { initAlarmListeners } from "./modules/alarm.js";
+import initModals from "./modules/modal.js";
+
+import "./modules/input_range";
 
 const app = () => {
   initHeaderBackground();
@@ -21,11 +19,11 @@ const app = () => {
   initAlarmInterface();
   initAlarmListeners();
   initModals();
-  initClockListeners();
 
   headerMenu();
   changeBackgroundBtn();
   navBtns();
+  switchClockFormat();
 };
 
 export default app;

@@ -19,8 +19,7 @@ const initDefaultData = (key, defaultData) => {
 const moveToolContainerX = (value) =>
   $toolContainer.style.setProperty("transform", `translateX(${value})`);
 
-const insertValuesInDefault = (defaultData, values, newProp) => {
-  // modifyOptionSet
+const modifyOptionSet = (defaultData, values, newProp) => {
   const newData = defaultData.map((obj) => {
     const newObj = values.includes(obj.value) ? { ...obj, ...newProp } : obj;
     return newObj;
@@ -29,8 +28,7 @@ const insertValuesInDefault = (defaultData, values, newProp) => {
   return newData;
 };
 
-const setValueFromOption = ({ target, buttonSelector, valueTag }) => {
-  // changeOption
+const changeOption = ({ target, buttonSelector, valueTag }) => {
   const $icon = target.querySelector(".ca-i-turn_circle");
   const isActive = $icon.classList.contains("ca-i-turn_circle--active");
 
@@ -68,8 +66,8 @@ const initModals = () => {
     secondModal,
     CaSecondModal,
     initDefaultData,
-    setValueFromOption,
-    insertValuesInDefault,
+    changeOption,
+    modifyOptionSet,
     toggleSwitchOption,
     moveToolContainerX,
   });
@@ -78,8 +76,8 @@ const initModals = () => {
     secondModal,
     CaSecondModal,
     initDefaultData,
-    setValueFromOption,
-    insertValuesInDefault,
+    changeOption,
+    modifyOptionSet,
     moveToolContainerX,
   });
   initClockSettingsModal({ modal, toggleSwitchOption, moveToolContainerX });

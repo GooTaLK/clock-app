@@ -27,8 +27,8 @@ const initAlarmEditModal = ({
   secondModal,
   CaSecondModal,
   initDefaultData,
-  setValueFromOption,
-  insertValuesInDefault,
+  changeOption,
+  modifyOptionSet,
   toggleSwitchOption,
   moveToolContainerX,
 }) => {
@@ -214,7 +214,7 @@ const initAlarmEditModal = ({
             : option
         );
       } else {
-        repeatOptions = insertValuesInDefault(
+        repeatOptions = modifyOptionSet(
           defaultAlarmSecondModalEditRepeat,
           [value],
           { active: true }
@@ -244,7 +244,7 @@ const initAlarmEditModal = ({
     typeEvent: "click",
     selector: "[data-sm-option='alarm set repeat']",
     callback: ({ target }) => {
-      const isActive = setValueFromOption({
+      const isActive = changeOption({
         target,
         buttonSelector: ".alarm-option__edit-repeat button",
         valueTag: "span",
@@ -262,7 +262,7 @@ const initAlarmEditModal = ({
     callback: ({ target }) => {
       const value = target.value;
       const arrayOfValues = value.split(";");
-      const customRepeatOptions = insertValuesInDefault(
+      const customRepeatOptions = modifyOptionSet(
         defaultAlarmSecondModalCustomRepeat,
         arrayOfValues,
         { active: true }
@@ -360,7 +360,7 @@ const initAlarmEditModal = ({
     selector: ".alarm-option__edit-ring button",
     callback: ({ target }) => {
       const value = target.value;
-      const ringOptions = insertValuesInDefault(
+      const ringOptions = modifyOptionSet(
         defaultAlarmSecondModalEditRing,
         [value],
         { active: true }
@@ -389,7 +389,7 @@ const initAlarmEditModal = ({
     typeEvent: "click",
     selector: "[data-sm-option='alarm set ring']",
     callback: ({ target }) => {
-      const isActive = setValueFromOption({
+      const isActive = changeOption({
         target,
         buttonSelector: ".alarm-option__edit-ring button",
         valueTag: "span",
