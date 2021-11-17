@@ -70,6 +70,7 @@ const initModals = () => {
     initDefaultData,
     setValueFromOption,
     insertValuesInDefault,
+    toggleSwitchOption,
     moveToolContainerX,
   });
   initAlarmSettingsModal({
@@ -81,7 +82,7 @@ const initModals = () => {
     insertValuesInDefault,
     moveToolContainerX,
   });
-  initClockSettingsModal({ modal, moveToolContainerX });
+  initClockSettingsModal({ modal, toggleSwitchOption, moveToolContainerX });
   initSecondModal({ secondModal });
 };
 

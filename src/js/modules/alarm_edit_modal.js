@@ -29,6 +29,7 @@ const initAlarmEditModal = ({
   initDefaultData,
   setValueFromOption,
   insertValuesInDefault,
+  toggleSwitchOption,
   moveToolContainerX,
 }) => {
   const customValuesForRepeat = [];
@@ -404,12 +405,7 @@ const initAlarmEditModal = ({
     typeEvent: "click",
     selector: ".alarm-option__edit-vibrate button",
     callback: ({ target }) => {
-      const $switch = target.querySelector(".ca-i-switch");
-      const isOn = target.value === "On";
-      const newValue = isOn ? "Off" : "On";
-
-      $switch.classList.toggle("ca-i-switch--active");
-      target.value = newValue;
+      const newValue = toggleSwitchOption(target);
       updateDataIfIsAdd({ vibrate: newValue });
     },
   });
