@@ -14,6 +14,10 @@
     color: #ffffff;
     cursor: grab;
 
+    & * {
+      pointer-events: none;
+    }
+
     &--grabbing {
       cursor: grabbing;
     }

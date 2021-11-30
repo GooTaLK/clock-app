@@ -10,7 +10,7 @@
   justify-content: space-evenly;
   align-items: center;
 
-  & button {
+  & > button {
     color: #ffffff;
     padding: 0;
     background-color: transparent;
@@ -23,7 +23,7 @@
     place-items: center;
   }
 
-  & span {
+  & > span {
     color: #8b8f92;
     font-size: 12px;
   }

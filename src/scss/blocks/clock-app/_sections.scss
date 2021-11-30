@@ -18,10 +18,7 @@
 
 .tool__buttons {
   box-shadow: 0 -1px #323232;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 0 35px;
-  width: 100%;
+  margin: 0 max(35px, calc((100vw - 400px) / 2));
   max-width: 400px;
   height: 150px;
   display: flex;
