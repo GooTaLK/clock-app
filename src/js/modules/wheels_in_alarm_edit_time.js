@@ -1,4 +1,5 @@
 import { addCeroAhead } from "../helpers/date_formater";
+import { isMobile } from "../helpers/detect_device";
 import useOn from "../helpers/use_on";
 
 const wheels = {
@@ -43,13 +44,22 @@ const fixRotateValue = (rotateValue) => {
   }
 };
 
-const initWheelInEditModal = (side) => {
+const initWheel = (side) => {
   if (side !== "left" && side !== "right") return;
 
-  const isLeft = side === "left" ? true : false;
+  const isLeft = side === "left";
   const selector = isLeft ? ".left-wheel-container" : ".right-wheel-container";
 
+  const isMobileDevice = isMobile();
+  const downEvent = isMobileDevice ? "touchstart" : "mousedown";
+  const upEvent = isMobileDevice ? "touchend" : "mouseup";
+  const moveEvent = isMobileDevice ? "touchmove" : "mousemove";
+
+  let touchPoint = 0;
+
   wheels[side].mouseLeaveListener = () => {
+    if (isMobileDevice) return [() => null, () => null];
+
     return useOn({
       mode: "selector",
       typeEvent: "mouseleave",
@@ -67,10 +77,12 @@ const initWheelInEditModal = (side) => {
   };
 
   useOn({
-    typeEvent: "mousedown",
+    typeEvent: downEvent,
     selector,
-    callback: () => {
+    callback: (e) => {
       const target = document.querySelector(`.${side}-wheel-time`);
+
+      isMobileDevice && (touchPoint = e.touches[0].screenY);
 
       target.parentElement.classList.add(`${side}-wheel-time--grabbing`);
       target.classList.remove(`${side}-wheel-time--adjustment`);
@@ -78,7 +90,7 @@ const initWheelInEditModal = (side) => {
   });
 
   useOn({
-    typeEvent: "mouseup",
+    typeEvent: upEvent,
     selector,
     callback: () => {
       const target = document.querySelector(`.${side}-wheel-time`);
@@ -93,13 +105,24 @@ const initWheelInEditModal = (side) => {
   });
 
   useOn({
-    typeEvent: "mousemove",
+    typeEvent: moveEvent,
     selector,
     callback: (e) => {
-      if (e.buttons !== 1) return;
-      e.preventDefault();
+      if (!isMobileDevice && e.buttons !== 1) return;
       const target = document.querySelector(`.${side}-wheel-time`);
-      const walk = isLeft ? e.movementY / 2 : e.movementY / 4;
+
+      const getMovementY = () => {
+        if (!isMobileDevice) return e.movementY;
+
+        const float = e.touches[0].screenY - touchPoint;
+        touchPoint = e.touches[0].screenY;
+        return float;
+      };
+
+      const slower = isMobileDevice
+        ? { left: 0.3, right: 0.15 }
+        : { left: 0.5, right: 0.25 };
+      const walk = getMovementY() * slower[side];
 
       wheels[side].rotateValue -= walk;
       wheels[side].rotateValue = fixRotateValue(wheels[side].rotateValue);
@@ -108,5 +131,5 @@ const initWheelInEditModal = (side) => {
   });
 };
 
-export default initWheelInEditModal;
+export default initWheel;
 export { wheels };

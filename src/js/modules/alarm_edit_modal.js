@@ -18,7 +18,7 @@ import getDataOfParent from "../helpers/getDataOfParent";
 import { capitalize } from "../helpers/capitalize";
 
 import CaAlarmEditModal from "../dom_elements/alarmModal/CaAlarmEditModal";
-import initWheelInEditModal, { wheels } from "./wheels_in_alarm_edit_time";
+import initWheel, { wheels } from "./wheels_in_alarm_edit_time";
 import { initAlarmInterface } from "./alarm_interface";
 import { alarmState, updateAllAlarmState } from "./alarm";
 
@@ -73,8 +73,8 @@ const initAlarmEditModal = ({
     updateAllLocalData("alarm-add-set", data);
   };
 
-  initWheelInEditModal("left");
-  initWheelInEditModal("right");
+  initWheel("left");
+  initWheel("right");
   initDefaultData("alarm-add-set", defaultAlarmModalAddSet);
 
   useOn({
@@ -323,6 +323,8 @@ const initAlarmEditModal = ({
     typeEvent: "click",
     selector: ".alarm-set__custom-repeat__accept",
     callback: () => {
+      if (customValuesForRepeat.length === 0) return;
+
       const $buttons = document.querySelectorAll(
         "[data-sm-option='alarm set custom repeat']"
       );
