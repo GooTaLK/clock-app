@@ -106,17 +106,25 @@
               </div>
               <div class="clock-info">
                 <p class="clock-info__location">Standar time of "local site"</p>
-                <span class="clock-info__local-date">sat., 13 nov.</span>
+                <span class="clock-info__local-date">day, date month</span>
               </div>
             </div>
           </div>
-          <div class="tool__buttons">
+          <div class="tool__buttons" id="clockButtons">
             <div class="ca-btn_group">
-              <button>
+              <button data-clock-button="add">
                 <img src="./assets/Plus.svg" alt="Clock add button" />
               </button>
               <span>Add</span>
             </div>
+
+            <div class="ca-btn_group display-none">
+              <button data-clock-button="edit">
+                <img src="./assets/Edit.svg" alt="Clock add button" />
+              </button>
+              <span>Edit</span>
+            </div>
+
             <div class="ca-btn_group">
               <button data-clock-button="settings">
                 <img src="./assets/Cog.svg" alt="Clock settings button" />

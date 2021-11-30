@@ -3,7 +3,7 @@ import useOn from "../helpers/use_on";
 const $container = document.querySelector(".tools-container");
 const $anchorsInNav = document.querySelectorAll(".topbar__nav a");
 
-const navBtns = () => {
+const navButtons = () => {
   useOn({
     typeEvent: "click",
     selector: ".topbar__nav a",
@@ -20,4 +20,4 @@ const navBtns = () => {
   });
 };
 
-export { navBtns };
+export { navButtons };

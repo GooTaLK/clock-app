@@ -25,7 +25,7 @@ const setBackgroundImageWithId = (dataImgId) => {
   return matchingData;
 };
 
-const initHeaderBackground = () => {
+const setBackground = () => {
   const bgImgId = localStorage.getItem("background-img-id");
 
   !bgImgId
@@ -33,7 +33,15 @@ const initHeaderBackground = () => {
     : setBackgroundImageWithId(bgImgId);
 };
 
-const headerMenu = () => {
+const switchClockFormatButton = (format) => {
+  $setFormatBtn.forEach((button) =>
+    format === "24h"
+      ? button.classList.add("lk-check_btn--active")
+      : button.classList.remove("lk-check_btn--active")
+  );
+};
+
+const menu = () => {
   useOn({
     typeEvent: "click",
     selector: ".header__options-btn",
@@ -57,7 +65,7 @@ const headerMenu = () => {
   });
 };
 
-const changeBackgroundBtn = () => {
+const changeBackgroundButton = () => {
   useOn({
     typeEvent: "click",
     selector: ".change-background-btn",
@@ -121,21 +129,17 @@ const switchClockFormat = () => {
     selector: ".change-clock-format",
     callback: () =>
       toggleClockFormat({
-        if24h: () =>
-          $setFormatBtn.forEach((button) =>
-            button.classList.add("lk-check_btn--active")
-          ),
-        if12h: () =>
-          $setFormatBtn.forEach((button) =>
-            button.classList.remove("lk-check_btn--active")
-          ),
+        if24h: () => switchClockFormatButton("24h"),
+        if12h: () => switchClockFormatButton("12h"),
       }),
   });
 };
 
-export {
-  initHeaderBackground,
-  headerMenu,
-  changeBackgroundBtn,
-  switchClockFormat,
+const initHeader = () => {
+  setBackground();
+  menu();
+  changeBackgroundButton();
+  switchClockFormat();
 };
+
+export { initHeader, switchClockFormatButton };

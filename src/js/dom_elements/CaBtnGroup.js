@@ -1,12 +1,18 @@
-const CaBtnGroup = ({ className, name, child }) => {
+const CaBtnGroup = ({
+  className,
+  name,
+  dataset = { name: String, value: String },
+  child,
+}) => {
   const $btnGroup = document.createElement("div");
   const $button = document.createElement("button");
   const $span = document.createElement("span");
 
   $btnGroup.classList.add("ca-btn_group");
-  $btnGroup.classList.add(className);
+  className && $btnGroup.classList.add(className);
+  dataset && ($btnGroup.dataset[dataset.name] = dataset.value);
 
-  $button.insertAdjacentHTML("afterbegin", child);
+  $button.insertAdjacentElement("afterbegin", child);
 
   $span.textContent = name;
 
