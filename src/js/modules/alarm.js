@@ -1,5 +1,6 @@
 import useOn from "../helpers/use_on";
 import { getLocalData, updateLocalData } from "../helpers/JSONAndLocalStorage";
+import { daysOfWeek } from "../helpers/date_utilities";
 
 import { secondModal } from "./modal";
 import CaSecondModal from "../dom_elements/modal/CaSecondModal";
@@ -8,15 +9,6 @@ import { initAlarmInterface } from "./alarm_interface";
 const alarmState = getLocalData("alarm-data") || [];
 const alarmRepeatingState = new Map();
 
-const daysOfWeek = [
-  "sunday",
-  "monday",
-  "tuesday",
-  "wednesday",
-  "thursday",
-  "friday",
-  "saturday",
-];
 const minutesInMs = 60000;
 
 const updateAllAlarmState = (newAlarmState) => {
