@@ -84,13 +84,13 @@ const getInfoFromTimeZone = (timeZone, date = new Date()) => {
   };
 
   const timeDescription = () => {
-    const dateDifference = new Date(formatStrTime()).getDate() - date.getDate();
+    const dayDiff = new Date(formatStrTime()).getDay() - date.getDay();
     const replaceDate = (text) =>
       strTime.replace(/\d\d?\/\d\d?\/\d{4}, /, text);
 
-    if (dateDifference === 0) return replaceDate("");
-    if (dateDifference === 1) return replaceDate("Tomorrow, ");
-    if (dateDifference === -1) return replaceDate("Yesterday, ");
+    if (dayDiff === 0) return replaceDate("");
+    if (dayDiff === 1 || dayDiff === -6) return replaceDate("Tomorrow, ");
+    if (dayDiff === -1 || dayDiff === 6) return replaceDate("Yesterday, ");
   };
 
   return { area, local, strTimeDescription: timeDescription() };
