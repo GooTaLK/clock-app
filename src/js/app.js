@@ -11,10 +11,10 @@ import "./modules/input_range";
 const app = () => {
   initHeader();
   navButtons();
-  initClockFormat();
-  initClockAndAlarm();
   initClockInterface();
   initAlarmInterface();
+  initClockFormat();
+  initClockAndAlarm();
   initAlarmListeners();
   initModals();
 };
