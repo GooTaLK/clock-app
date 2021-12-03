@@ -32,30 +32,38 @@ const CaAlarmEditModal = ({
   });
   const $editRepeat = CaModalOption("alarm-option__edit-repeat", {
     type: "button",
-    name: "repeat",
-    text: "Repeat",
-    value: repeat,
-    chevronText: repeatText,
+    button: {
+      name: "repeat",
+      text: "Repeat",
+      value: repeat,
+      rightIcon: { className: "ca-i-chevron", text: repeatText },
+    },
   });
   const $editRing = CaModalOption("alarm-option__edit-ring", {
     type: "button",
-    name: "ring",
-    text: "Ring",
-    value: ring,
-    chevronText: ring,
+    button: {
+      name: "ring",
+      text: "Ring",
+      value: ring,
+      rightIcon: { className: "ca-i-chevron", text: ring },
+    },
   });
   const $editVibrate = CaModalOption("alarm-option__edit-vibrate", {
     type: "switchButton",
-    name: "vibrate",
-    text: "Vibrate",
-    value: vibrate,
+    switchButton: {
+      name: "vibrate",
+      text: "Vibrate",
+      value: vibrate,
+    },
   });
   const $editName = CaModalOption("alarm-option__edit-name", {
     type: "button",
-    name: "alarmName",
-    text: "Name",
-    value: name,
-    chevronText: name,
+    button: {
+      name: "alarmName",
+      text: "Name",
+      value: name,
+      rightIcon: { className: "ca-i-chevron", text: name },
+    },
   });
 
   $container.classList.add("alarm-modal");

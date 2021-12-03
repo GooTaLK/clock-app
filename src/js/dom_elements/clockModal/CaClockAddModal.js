@@ -24,9 +24,11 @@ const CaClockAddModal = () => {
 
       const $countryOption = CaModalOption("clock-option__add-country", {
         type: "button",
-        text: `${local}(${area})`,
-        description: strTimeDescription,
-        value: timeZone,
+        button: {
+          text: `${local}(${area})`,
+          description: strTimeDescription,
+          value: timeZone,
+        },
       });
 
       $content.appendChild($countryOption);

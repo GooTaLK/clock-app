@@ -1,70 +1,107 @@
-const CaModalOption = (
-  optionClass,
-  { type, text, children, value, name, chevronText, description }
-) => {
-  const $optionContainer = document.createElement("div");
+const createIcon = (className, text) => {
+  const $i = document.createElement("i");
 
-  $optionContainer.classList.add("ca-modal-option");
-  $optionContainer.classList.add(optionClass);
+  $i.classList.add(className);
+
+  if (text) {
+    const $span = document.createElement("span");
+    $span.textContent = text;
+    $i.appendChild($span);
+  }
+
+  return $i;
+};
+
+const CaModalOption = (
+  className,
+  {
+    type,
+    text,
+    children,
+    button = {
+      text: String,
+      value: String,
+      name: String,
+      description: String,
+      leftIcon: { className: String, text: String },
+      rightIcon: { className: String, text: String },
+    },
+    switchButton = { text: String, name: String, value: String },
+  }
+) => {
+  const $container = document.createElement("div");
+
+  $container.classList.add("ca-modal-option");
+  className && $container.classList.add(className);
 
   switch (type) {
     case "text":
-      $optionContainer.textContent = text;
-      return $optionContainer;
+      $container.textContent = text;
+      return $container;
 
     case "children":
-      $optionContainer.appendChild(children);
-      return $optionContainer;
+      $container.appendChild(children);
+      return $container;
 
     case "button":
       const $button = document.createElement("button");
       const $content = document.createElement("div");
-      const $i = document.createElement("i");
-      const $span = document.createElement("span");
 
       $button.classList.add("ca-modal-option-btn");
-      value && ($button.value = value);
-      name && ($button.name = name);
+      button.value && ($button.value = button.value);
+      button.name && ($button.name = button.name);
 
-      $content.textContent = text;
+      $content.textContent = button.text;
 
-      $i.classList.add("ca-i-chevron");
-
-      chevronText && ($span.textContent = chevronText);
-
-      if (description) {
+      if (button.description) {
         const $p = document.createElement("p");
-        $p.innerHTML = description;
+        $p.innerHTML = button.description;
         $content.appendChild($p);
       }
 
-      $i.appendChild($span);
-      $button.append($content, $i);
-      $optionContainer.appendChild($button);
+      if (button.leftIcon) {
+        const $leftIcon = createIcon(
+          button.leftIcon.className,
+          button.leftIcon.text
+        );
+        $button.appendChild($leftIcon);
+      }
 
-      return $optionContainer;
+      $button.appendChild($content);
+
+      if (button.rightIcon) {
+        const $rightIcon = createIcon(
+          button.rightIcon.className,
+          button.rightIcon.text
+        );
+        $button.appendChild($rightIcon);
+      }
+
+      $container.appendChild($button);
+
+      return $container;
 
     case "switchButton":
       const $switchButton = document.createElement("button");
       const $switchSpan = document.createElement("span");
 
       $switchButton.classList.add("ca-modal-option-check-btn");
-      $switchButton.textContent = text;
-      name && ($switchButton.name = name);
-      value && ($switchButton.value = value);
+      $switchButton.textContent = switchButton.text;
+      switchButton.name && ($switchButton.name = switchButton.name);
+      switchButton.value && ($switchButton.value = switchButton.value);
 
       $switchSpan.classList.add("ca-i-switch");
-      if (value && value === "On")
+      if (switchButton.value && switchButton.value === "On")
         $switchSpan.classList.add("ca-i-switch--active");
 
       $switchButton.appendChild($switchSpan);
-      $optionContainer.appendChild($switchButton);
+      $container.appendChild($switchButton);
 
-      return $optionContainer;
+      return $container;
 
     default:
-      $optionContainer.textContent = "No child";
-      return $optionContainer;
+      $container.textContent = "No child";
+      return $container;
   }
 };
 
