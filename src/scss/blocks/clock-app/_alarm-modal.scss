@@ -16,5 +16,9 @@
       place-items: center;
       padding: 14px;
     }
+
+    .ca-long-btn[data-alarm-button="delete"] {
+      color: tomato;
+    }
   }
 }

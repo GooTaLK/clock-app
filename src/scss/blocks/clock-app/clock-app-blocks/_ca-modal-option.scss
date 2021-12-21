@@ -1,13 +1,18 @@
 .ca-modal-option {
+  margin: 1.5px 0;
   min-height: 64px;
   box-shadow: 0 1px #2d2d2d;
+
+  &:first-child {
+    box-shadow: 0 -1px #2d2d2d, 0 1px #2d2d2d;
+  }
 
   &-btn,
   &-check-btn {
     text-align: left;
     padding: 17px;
     border: none;
-    background-color: transparent;
+    background-color: #090909;
     color: #ffffff;
     width: 100%;
     min-height: 64px;
