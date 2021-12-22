@@ -27,12 +27,17 @@ const CaModalOption = (
       rightIcon: { className: String, text: String },
     },
     switchButton = { text: String, name: String, value: String },
-  }
+  },
+  additionalAttributes
 ) => {
   const $container = document.createElement("div");
 
   $container.classList.add("ca-modal-option");
   className && $container.classList.add(className);
+  additionalAttributes &&
+    additionalAttributes.forEach(([name, value]) =>
+      $container.setAttribute(name, value)
+    );
 
   switch (type) {
     case "text":
