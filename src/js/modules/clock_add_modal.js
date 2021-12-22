@@ -70,8 +70,11 @@ const initclockAddModal = () => {
           child: CaSecondaryClockChild({ strTimeDescription }),
         })
       );
-      secondaryClocksState.push({ timeZone: value });
-      addLocalData("clock-data", { timeZone: value });
+
+      const order = secondaryClocksState.length + 1;
+
+      secondaryClocksState.push({ timeZone: value, order });
+      addLocalData("clock-data", { timeZone: value, order });
 
       $clockEditButton.classList.remove("display-none");
       modal.close({});

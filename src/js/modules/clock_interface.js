@@ -45,23 +45,35 @@ const fillClockInfo = () => {
 };
 
 const chargeSecondaryClocks = () => {
-  if (secondaryClocksState.length === 0) return;
+  const $secondaryClocks = document.querySelectorAll(".secondary-clock");
+  if ($secondaryClocks.length !== 0)
+    $secondaryClocks.forEach((clock) => clock.remove());
 
-  $clockEditButton.classList.remove("display-none");
+  if (secondaryClocksState.length === 0)
+    return $clockEditButton.classList.add("display-none");
 
-  secondaryClocksState.forEach(({ timeZone }) => {
-    const { local, strTimeDescription } = getInfoFromTimeZone(timeZone);
+  if ($clockEditButton.classList.contains("display-none"))
+    $clockEditButton.classList.remove("display-none");
 
-    $clockButtons.insertAdjacentElement(
-      "afterbegin",
-      CaBtnGroup({
+  const orderOfClocks = secondaryClocksState.reduce(
+    (listSorted, { timeZone, order }) => {
+      const { local, strTimeDescription } = getInfoFromTimeZone(timeZone);
+
+      listSorted[order] = CaBtnGroup({
         className: `secondary-clock`,
         name: local,
         dataset: { name: "clockTimeZone", value: timeZone },
         child: CaSecondaryClockChild({ strTimeDescription }),
-      })
-    );
-  });
+      });
+
+      return listSorted;
+    },
+    []
+  );
+
+  orderOfClocks.forEach((el) =>
+    $clockButtons.insertAdjacentElement("afterbegin", el)
+  );
 };
 
 const initClockInterface = () => {
@@ -70,4 +82,4 @@ const initClockInterface = () => {
   chargeSecondaryClocks();
 };
 
-export { initClockInterface };
+export { initClockInterface, chargeSecondaryClocks };
