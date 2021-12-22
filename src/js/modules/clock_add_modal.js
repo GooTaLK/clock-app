@@ -37,6 +37,24 @@ const initclockAddModal = () => {
   });
 
   useOn({
+    typeEvent: "keyup",
+    selector: ".clock-option__search-input input",
+    callback: (e) => {
+      if (e.key === "Escape") e.target.value = "";
+
+      const value = e.target.value.toLowerCase();
+
+      document
+        .querySelectorAll(".clock-option__add-country")
+        .forEach((el) =>
+          el.textContent.toLowerCase().includes(value)
+            ? el.classList.remove("display-none")
+            : el.classList.add("display-none")
+        );
+    },
+  });
+
+  useOn({
     typeEvent: "click",
     selector: ".clock-option__add-country",
     callback: ({ target }) => {

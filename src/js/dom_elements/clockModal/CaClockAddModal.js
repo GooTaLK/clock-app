@@ -1,8 +1,17 @@
 import { aryIannaTimeZones } from "../../helpers/date_utilities";
 
-import { getInfoFromTimeZone } from "../../modules/clock";
+import { getInfoFromTimeZone, secondaryClocksState } from "../../modules/clock";
 import CaModalHeader from "../modal/CaModalHeader";
 import CaModalOption from "../modal/CaModalOption";
+
+const SearchInput = () => {
+  const $input = document.createElement("input");
+  $input.classList.add("ca-long-input");
+  $input.type = "search";
+  $input.placeholder = "Search city";
+
+  return $input;
+};
 
 const CaClockAddModal = () => {
   const date = new Date();
@@ -13,6 +22,11 @@ const CaClockAddModal = () => {
     headerClass: "clock-modal__add",
     title: "Add city",
     close: { exist: true, dataName: "clockButton", dataValue: "close-modal" },
+  });
+
+  const $searchInputOption = CaModalOption("clock-option__search-input", {
+    type: "children",
+    children: SearchInput(),
   });
 
   Promise.resolve().then(() => {
@@ -40,6 +54,7 @@ const CaClockAddModal = () => {
 
   $content.classList.add("clock-modal__content");
 
+  $content.insertAdjacentElement("afterbegin", $searchInputOption);
   $container.append($header, $content);
 
   return $container;
