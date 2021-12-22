@@ -136,10 +136,12 @@ const initClockAndAlarm = () => {
   updateClock();
   setInterval(() => {
     updateClock();
-    updateSecondaryClocks();
     checkAlarms();
   }, 1000);
 };
+
+const initSecondaryClocks = () =>
+  setInterval(() => updateSecondaryClocks(), 1000);
 
 const initClockFormat = () => {
   const clockFormat = localStorage.getItem("clock-format");
@@ -158,6 +160,7 @@ const initClockFormat = () => {
 
 export {
   initClockAndAlarm,
+  initSecondaryClocks,
   initClockFormat,
   setClockFormat,
   getInfoFromTimeZone,

@@ -1,6 +1,10 @@
 import { initHeader } from "./modules/header_funtionalities";
 import { navButtons } from "./modules/nav_interactions";
-import { initClockAndAlarm, initClockFormat } from "./modules/clock.js";
+import {
+  initClockAndAlarm,
+  initClockFormat,
+  initSecondaryClocks,
+} from "./modules/clock.js";
 import { initClockInterface } from "./modules/clock_interface";
 import { initAlarmInterface } from "./modules/alarm_interface.js";
 import { initAlarmListeners } from "./modules/alarm.js";
@@ -15,6 +19,7 @@ const app = () => {
   initAlarmInterface();
   initClockFormat();
   initClockAndAlarm();
+  initSecondaryClocks();
   initAlarmListeners();
   initModals();
 };
