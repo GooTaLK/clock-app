@@ -1,5 +1,10 @@
 class Modal {
-  constructor(target) {
+  constructor(
+    target,
+    options = { atOpening: () => null, atClosing: () => null }
+  ) {
+    this.atOpening = options.atOpening || (() => null);
+    this.atClosing = options.atClosing || (() => null);
     this.target = target;
     this.modalReference = null;
   }
@@ -40,6 +45,7 @@ class Modal {
     this.insertChildren(children);
     this.changeAnimation(animation);
     setTimeout(() => this.modalReference.classList.add("modal--active"), 0);
+    this.atOpening();
     next();
   }
 
@@ -49,6 +55,7 @@ class Modal {
       this.removeChildren();
       this.changeAnimation(null);
     }, timeout);
+    this.atClosing();
     next();
   }
 }
