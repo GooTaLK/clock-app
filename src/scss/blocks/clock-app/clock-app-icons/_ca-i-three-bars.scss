@@ -1,0 +1,27 @@
+.ca-i-three_bars {
+  display: inline-block;
+  position: relative;
+
+  &,
+  &::before,
+  &::after {
+    content: "";
+    width: 13.5px;
+    height: 1px;
+    background-color: #6d6d6d;
+  }
+
+  &::before,
+  &::after {
+    display: block;
+    position: absolute;
+  }
+
+  &::before {
+    top: 4px;
+  }
+
+  &::after {
+    bottom: 4px;
+  }
+}

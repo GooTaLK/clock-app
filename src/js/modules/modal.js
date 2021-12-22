@@ -6,6 +6,7 @@ import initAlarmEditModal from "./alarm_edit_modal";
 import initAlarmSettingsModal from "./alarm_settings_modal";
 import initclockAddModal from "./clock_add_modal";
 import initClockSettingsModal from "./clock_settings_modal";
+import initClockEditModal from "./clock_edit_modal";
 import initSecondModal from "./second_modal";
 
 const $toolContainer = document.querySelector(".tools-container");
@@ -89,6 +90,7 @@ const initModals = () => {
   });
   initclockAddModal();
   initClockSettingsModal({ modal, toggleSwitchOption, moveToolContainerX });
+  initClockEditModal();
   initSecondModal({ secondModal });
 };
 
