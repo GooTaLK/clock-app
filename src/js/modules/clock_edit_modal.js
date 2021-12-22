@@ -1,7 +1,6 @@
 import useOn from "../helpers/use_on";
 import getDataOfParent from "../helpers/getDataOfParent";
 import { isMobile as checkMobile } from "../helpers/detect_device";
-import { addLocalData } from "../helpers/JSONAndLocalStorage";
 
 import CaClockEditModal from "../dom_elements/clockModal/CaClockEditModal";
 import { modal } from "./modal";
@@ -18,16 +17,6 @@ const editState = {
   deleted: false,
   edited: false,
 };
-
-/*const dragListeners = {
-  listeners: [],
-  add: function () {
-    this.listeners.forEach(([add]) => add());
-  },
-  remove: function () {
-    this.listeners.forEach(([, remove]) => remove());
-  },
-};*/
 
 const trackDrag = (target, container, pageY) => {
   const topOfWrapper = target.parentElement.offsetTop;
@@ -72,71 +61,6 @@ const initClockEditModal = () => {
         children: CaClockEditModal(),
         animation: "botToTop",
       });
-      /*
-      const COUNTRY_SELECTOR = ".clock-option__edit-country";
-      const $countries = document.querySelectorAll(COUNTRY_SELECTOR);
-      const $modalContent = document.querySelector(
-        "[data-clock-modal-type='edit'] .clock-modal__content"
-      );
-
-      const countryDragListeners = [...$countries].map((country) => {
-        const [addDragStartListener, removeDragStartListener] = useOn({
-          mode: "element",
-          typeEvent: "dragstart",
-          element: country,
-          callback: ({ target }) =>
-            target.classList.add(`${COUNTRY_SELECTOR.slice(1)}--dragging`),
-        });
-
-        const [addDragEndListener, removeDragEndListener] = useOn({
-          mode: "element",
-          typeEvent: "dragend",
-          element: country,
-          callback: ({ target }) =>
-            target.classList.remove(`${COUNTRY_SELECTOR.slice(1)}--dragging`),
-        });
-
-        return [
-          () => {
-            addDragStartListener();
-            addDragEndListener();
-          },
-          () => {
-            removeDragStartListener();
-            removeDragEndListener();
-          },
-        ];
-      });
-
-      const modalContentDragListener = useOn({
-        mode: "element",
-        typeEvent: "dragover",
-        element: $modalContent,
-        callback: (e) => {
-          e.preventDefault();
-
-          const $draggingElement = document.querySelector(
-            `${COUNTRY_SELECTOR}--dragging`
-          );
-          const afterElement = getDragAfterElement(
-            $modalContent,
-            COUNTRY_SELECTOR,
-            e.clientY
-          );
-
-          if (afterElement === null) {
-            $modalContent.appendChild($draggingElement);
-          } else {
-            $modalContent.insertBefore($draggingElement, afterElement);
-          }
-        },
-      });
-
-      dragListeners.listeners = [
-        ...countryDragListeners,
-        modalContentDragListener,
-      ];
-      dragListeners.add();*/
     },
   });
 
@@ -233,7 +157,6 @@ const initClockEditModal = () => {
       }
 
       modal.close({});
-      // dragListeners.remove();
     },
   });
 
