@@ -9,8 +9,14 @@ import initClockSettingsModal from "./clock_settings_modal";
 import initSecondModal from "./second_modal";
 
 const $toolContainer = document.querySelector(".tools-container");
-const modal = new Modal(".main");
-const secondModal = new Modal(".main");
+
+const modalOptions = {
+  atOpening: () => document.body.classList.add("scroll-less"),
+  atClosing: () => document.body.classList.remove("scroll-less"),
+};
+
+const modal = new Modal(".main", modalOptions);
+const secondModal = new Modal(".main", modalOptions);
 
 const initDefaultData = (key, defaultData) => {
   const data = getLocalData(key);

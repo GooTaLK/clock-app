@@ -3,8 +3,9 @@
   background-color: hsl(0, 0%, 4%);
 
   &__content {
+    padding-top: 1px;
     height: calc(100% - 49px);
-    overflow: scroll;
+    overflow: auto;
 
     .alarm-option__edit-time {
       padding-top: 14px;

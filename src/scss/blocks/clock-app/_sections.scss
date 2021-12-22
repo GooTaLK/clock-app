@@ -10,10 +10,7 @@
 .tool__content {
   min-height: calc(100% - 150px);
   overflow-y: auto;
-
-  &::-webkit-scrollbar {
-    display: none;
-  }
+  overflow-x: hidden;
 }
 
 .tool__buttons {

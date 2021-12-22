@@ -16,3 +16,7 @@
     }
   }
 }
+
+body.scroll-less::-webkit-scrollbar {
+  display: none;
+}
