@@ -5,32 +5,39 @@ const useOn = ({
   element,
   callback,
   callbackIfNotMatch = () => null,
+  options = false,
 }) => {
   if (mode === "element") {
-    const addListener = () => element.addEventListener(typeEvent, callback);
+    const addListener = () =>
+      element.addEventListener(typeEvent, callback, options);
     const removeListener = () =>
-      element.removeEventListener(typeEvent, callback);
+      element.removeEventListener(typeEvent, callback, options);
 
     return [addListener, removeListener];
   } else if (mode === "selector") {
     const $element = document.querySelector(selector);
-    const addListener = () => $element.addEventListener(typeEvent, callback);
+    const addListener = () =>
+      $element.addEventListener(typeEvent, callback, options);
     const removeListener = () =>
-      $element.removeEventListener(typeEvent, callback);
+      $element.removeEventListener(typeEvent, callback, options);
 
     return [addListener, removeListener];
   } else if (mode === "DOM") {
-    document.addEventListener(typeEvent, (e) => {
-      const match =
-        e.target.matches(selector) || e.target.matches(`${selector} *`);
+    document.addEventListener(
+      typeEvent,
+      (e) => {
+        const match =
+          e.target.matches(selector) || e.target.matches(`${selector} *`);
 
-      if (!match) {
-        callbackIfNotMatch(e);
-        return;
-      }
+        if (!match) {
+          callbackIfNotMatch(e);
+          return;
+        }
 
-      callback(e);
-    });
+        callback(e);
+      },
+      options
+    );
   }
 };
 

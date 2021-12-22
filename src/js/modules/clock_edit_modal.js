@@ -132,7 +132,7 @@ const initClockEditModal = () => {
         $container.appendChild($targetGrabbed.parentElement);
       }
     },
-    options: isMobile ? { passive: true } : false,
+    options: isMobile ? { passive: false } : false,
   });
 
   useOn({
