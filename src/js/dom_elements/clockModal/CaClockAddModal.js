@@ -31,6 +31,14 @@ const CaClockAddModal = () => {
 
   Promise.resolve().then(() => {
     aryIannaTimeZones.forEach((timeZone) => {
+      let existTimeZone;
+
+      for (const clock of secondaryClocksState) {
+        existTimeZone = clock.timeZone === timeZone;
+      }
+
+      if (existTimeZone) return;
+
       const { area, local, strTimeDescription } = getInfoFromTimeZone(
         timeZone,
         date
