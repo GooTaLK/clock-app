@@ -17,7 +17,7 @@ const modalOptions = {
 };
 
 const modal = new Modal(".main", modalOptions);
-const secondModal = new Modal(".main", modalOptions);
+const secondModal = new Modal(".main");
 
 const initDefaultData = (key, defaultData) => {
   const data = getLocalData(key);
