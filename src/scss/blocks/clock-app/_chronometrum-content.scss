@@ -1,0 +1,108 @@
+$container-height: calc(100vh - 60px - 150px - 20px);
+$chronometrum-side-size: 250px;
+$chronometrum-margin-top: 20px;
+
+.chronometrum-content {
+  position: relative;
+  width: 300px;
+  height: $container-height;
+  padding-top: 20px;
+  margin: 0 auto;
+  overflow-x: hidden;
+  overflow-y: auto;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.chronometrum-wrapper {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+
+  .chronometrum {
+    font-size: 20px;
+    user-select: none;
+    border: 1px solid hsl(0, 0%, 55%);
+    border-radius: 50%;
+    width: $chronometrum-side-size;
+    height: $chronometrum-side-size;
+    margin-top: $chronometrum-margin-top;
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    animation-name: chrono-animation;
+    animation-play-state: paused;
+    animation-duration: 100s;
+    animation-delay: calc((var(--percentage) - 1s) * -1);
+    transform: translateY(0);
+
+    &__time {
+      font-weight: lighter;
+      font-size: 40px;
+      line-height: 35px;
+      position: relative;
+    }
+  }
+}
+
+@keyframes chrono-animation {
+  30% {
+    margin: 0;
+    padding: 10px;
+    width: 200px;
+    height: 260px;
+    transform: translateY(0);
+    gap: 15px;
+  }
+
+  90% {
+    width: calc(100% + 500px);
+    height: calc(100% - 100px - $chronometrum-margin-top);
+    padding-top: calc(
+      $container-height - 100px - $chronometrum-margin-top - 100px
+    );
+    border-color: hsl(0, 0%, 25%);
+    border-radius: 50%;
+    transform: translateY(100px);
+    gap: 0px;
+  }
+
+  100% {
+    width: calc(100% + 500px);
+    height: calc(100% - 100px - $chronometrum-margin-top);
+    padding-top: calc(
+      $container-height - 100px - $chronometrum-margin-top - 100px
+    );
+    border-color: hsl(0, 0%, 25%);
+    border-radius: 0;
+    transform: translateY(100px);
+    gap: 0;
+  }
+}
+
+.chronometrum-state {
+  text-align: center;
+  font-size: 18px;
+  transform: translateY(-50px);
+  opacity: max(calc(1 - (var(--percentage) / 50)), 0);
+}
+
+.laps {
+  height: calc(100% - 100px);
+  overflow-y: auto;
+  flex-shrink: 0;
+  padding-top: 10px;
+
+  & .lap {
+    text-align: center;
+    margin: 0;
+    padding: 10px 0;
+    box-shadow: 0 1px hsl(0, 0%, 50%);
+  }
+}

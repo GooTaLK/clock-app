@@ -135,16 +135,29 @@
         </section>
 
         <section class="tool-section">
-          <div class="tool__content"></div>
-          <div class="tool__buttons">
+          <div class="tool__content">
+            <div class="chronometrum-content">
+              <div class="chronometrum-wrapper">
+                <div class="chronometrum">
+                  <span class="chronometrum__time">00:00:00</span>
+                  <span class="chronometrum__log">00:00:00</span>
+                </div>
+              </div>
+
+              <div class="chronometrum-state">Ready</div>
+
+              <div class="laps"></div>
+            </div>
+          </div>
+          <div class="tool__buttons" id="chronometrumButtons">
             <div class="ca-btn_group">
-              <button>
+              <button data-chronometrum-button="play/pause">
                 <img src="./assets/Play.svg" alt="Chronometrum start button" />
               </button>
               <span>Start</span>
             </div>
             <div class="ca-btn_group">
-              <button>
+              <button data-chronometrum-button="reset" disabled>
                 <img
                   src="./assets/Square.svg"
                   alt="Chronometrum restart button"
@@ -153,7 +166,7 @@
               <span>Restart</span>
             </div>
             <div class="ca-btn_group">
-              <button>
+              <button data-chronometrum-button="lap" disabled>
                 <img src="./assets/Radar.svg" alt="Chronometrum lap button" />
               </button>
               <span>Lap</span>
