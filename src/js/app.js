@@ -9,6 +9,7 @@ import {
   initSecondaryClocks,
 } from "./modules/clock.js";
 import { initAlarmListeners } from "./modules/alarm.js";
+import { initChronometrumListeners } from "./modules/chronometrum";
 import initModals from "./modules/modal.js";
 
 import "./modules/input_range";
@@ -23,6 +24,7 @@ const app = () => {
   initClockAndAlarm();
   initSecondaryClocks();
   initAlarmListeners();
+  initChronometrumListeners();
   initModals();
 };
 
