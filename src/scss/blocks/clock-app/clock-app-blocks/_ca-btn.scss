@@ -21,6 +21,15 @@
     cursor: pointer;
     display: grid;
     place-items: center;
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: default;
+    }
+
+    img {
+      pointer-events: none;
+    }
   }
 
   & > span {
