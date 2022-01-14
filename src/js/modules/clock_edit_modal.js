@@ -1,17 +1,15 @@
 import useOn from "../helpers/use_on";
 import getDataOfParent from "../helpers/getDataOfParent";
-import { isMobile as checkMobile } from "../helpers/detect_device";
+import IS_MOBILE from "../helpers/detect_device";
 
 import CaClockEditModal from "../dom_elements/clockModal/CaClockEditModal";
 import { modal } from "./modal";
 import { secondaryClocksState } from "./clock";
 import { chargeSecondaryClocks } from "./clock_interface";
 
-const isMobile = checkMobile();
-
-const MOVE_EVENT = isMobile ? "touchmove" : "mousemove";
-const DOWN_EVENT = isMobile ? "touchstart" : "mousedown";
-const UP_EVENT = isMobile ? "touchend" : "mouseup";
+const MOVE_EVENT = IS_MOBILE ? "touchmove" : "mousemove";
+const DOWN_EVENT = IS_MOBILE ? "touchstart" : "mousedown";
+const UP_EVENT = IS_MOBILE ? "touchend" : "mouseup";
 
 const editState = {
   deleted: false,
@@ -71,7 +69,7 @@ const initClockEditModal = () => {
     callback: (e) => {
       if (e.target.matches(".ca-i-delete_circle")) return;
 
-      const pageY = isMobile ? e.touches[0].pageY : e.pageY;
+      const pageY = IS_MOBILE ? e.touches[0].pageY : e.pageY;
       const $container = document.querySelector(
         "[data-clock-modal-type='edit'] .clock-modal__content"
       );
@@ -79,7 +77,7 @@ const initClockEditModal = () => {
       trackDrag(e.target, $container, pageY);
       editState.edited = true;
     },
-    options: isMobile ? { passive: true } : false,
+    options: IS_MOBILE ? { passive: true } : false,
   });
 
   useOn({
@@ -110,8 +108,8 @@ const initClockEditModal = () => {
         "[data-clock-modal-type='edit'] .clock-modal__content"
       );
 
-      const pageY = isMobile ? e.touches[0].pageY : e.pageY;
-      const clientY = isMobile ? e.touches[0].clientY : e.clientY;
+      const pageY = IS_MOBILE ? e.touches[0].pageY : e.pageY;
+      const clientY = IS_MOBILE ? e.touches[0].clientY : e.clientY;
 
       const moveY = pageY - Number($container.dataset.initialPoint);
       const afterElement = getDragAfterElement(
@@ -132,7 +130,7 @@ const initClockEditModal = () => {
         $container.appendChild($targetGrabbed.parentElement);
       }
     },
-    options: isMobile ? { passive: false } : false,
+    options: IS_MOBILE ? { passive: false } : false,
   });
 
   useOn({

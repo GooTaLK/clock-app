@@ -3,4 +3,8 @@ const MOBILE_REG_EXP =
 
 const isMobile = () => MOBILE_REG_EXP.test(navigator.userAgent);
 
+const IS_MOBILE = isMobile();
+
+export default IS_MOBILE;
+
 export { isMobile };

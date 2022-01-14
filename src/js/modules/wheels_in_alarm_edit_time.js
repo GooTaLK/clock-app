@@ -1,5 +1,5 @@
 import { addCeroAhead } from "../helpers/date_formater";
-import { isMobile } from "../helpers/detect_device";
+import IS_MOBILE from "../helpers/detect_device";
 import useOn from "../helpers/use_on";
 
 const wheels = {
@@ -50,15 +50,14 @@ const initWheel = (side) => {
   const isLeft = side === "left";
   const selector = isLeft ? ".left-wheel-container" : ".right-wheel-container";
 
-  const isMobileDevice = isMobile();
-  const downEvent = isMobileDevice ? "touchstart" : "mousedown";
-  const upEvent = isMobileDevice ? "touchend" : "mouseup";
-  const moveEvent = isMobileDevice ? "touchmove" : "mousemove";
+  const downEvent = IS_MOBILE ? "touchstart" : "mousedown";
+  const upEvent = IS_MOBILE ? "touchend" : "mouseup";
+  const moveEvent = IS_MOBILE ? "touchmove" : "mousemove";
 
   let touchPoint = 0;
 
   wheels[side].mouseLeaveListener = () => {
-    if (isMobileDevice) return [() => null, () => null];
+    if (IS_MOBILE) return [() => null, () => null];
 
     return useOn({
       mode: "selector",
@@ -82,7 +81,7 @@ const initWheel = (side) => {
     callback: (e) => {
       const target = document.querySelector(`.${side}-wheel-time`);
 
-      isMobileDevice && (touchPoint = e.touches[0].screenY);
+      IS_MOBILE && (touchPoint = e.touches[0].screenY);
 
       target.parentElement.classList.add(`${side}-wheel-time--grabbing`);
       target.classList.remove(`${side}-wheel-time--adjustment`);
@@ -108,18 +107,18 @@ const initWheel = (side) => {
     typeEvent: moveEvent,
     selector,
     callback: (e) => {
-      if (!isMobileDevice && e.buttons !== 1) return;
+      if (!IS_MOBILE && e.buttons !== 1) return;
       const target = document.querySelector(`.${side}-wheel-time`);
 
       const getMovementY = () => {
-        if (!isMobileDevice) return e.movementY;
+        if (!IS_MOBILE) return e.movementY;
 
         const float = e.touches[0].screenY - touchPoint;
         touchPoint = e.touches[0].screenY;
         return float;
       };
 
-      const slower = isMobileDevice
+      const slower = IS_MOBILE
         ? { left: 0.3, right: 0.15 }
         : { left: 0.5, right: 0.25 };
       const walk = getMovementY() * slower[side];
