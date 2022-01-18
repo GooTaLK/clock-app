@@ -4,6 +4,10 @@ class SSWheel {
     this.distance = distance;
     this.speed = speed;
     this.maxPoint = this.wrapper.scrollHeight - this.wrapper.clientHeight;
+
+    this.init = this.init.bind(this);
+    this.scrollTo = this.scrollTo.bind(this);
+    this.cancelAnimation = this.cancelAnimation.bind(this);
   }
 
   currentPoint = 0;
@@ -61,15 +65,33 @@ class SSWheel {
     );
   };
 
-  init = () => {
+  init() {
     const initSmoothScroll = (direction) => {
       this.direction = direction;
       this.animationId = requestAnimationFrame(() => this.#smoothScroll());
     };
 
+    const shouldScroll = (target) => {
+      if (target === this.wrapper) return true;
+
+      let targetUp = target;
+
+      while (targetUp !== this.wrapper) {
+        if (targetUp.scrollHeight === targetUp.clientHeight) {
+          targetUp = targetUp.parentElement;
+        } else {
+          return false;
+        }
+      }
+
+      return true;
+    };
+
     this.wrapper.addEventListener(
       "wheel",
       (e) => {
+        if (!shouldScroll(e.target)) return;
+
         e.preventDefault();
         const direction = e.deltaY > 0 ? "down" : "up";
         initSmoothScroll(direction);
@@ -81,9 +103,9 @@ class SSWheel {
       this.cancelAnimation();
       this.maxPoint = this.wrapper.scrollHeight - this.wrapper.clientHeight;
     });
-  };
+  }
 
-  scrollTo = (value, { type = "pixels" } = {}) => {
+  scrollTo(value, { type = "pixels" } = {}) {
     const allowedTypes = ["pixels", "percentage", "element"];
     if (!allowedTypes.includes(type)) return;
 
@@ -116,11 +138,11 @@ class SSWheel {
     this.direction = distance > 0 ? "down" : "up";
 
     this.#smoothScroll(Math.abs(distance));
-  };
+  }
 
-  cancelAnimation = () => {
+  cancelAnimation() {
     cancelAnimationFrame(this.animationId);
-  };
+  }
 }
 
 export default SSWheel;
