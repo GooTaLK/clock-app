@@ -2,8 +2,6 @@ import useOn from "../helpers/use_on";
 import SSWheel from "../helpers/SSWheel";
 
 const $chronometrumContent = document.querySelector(".chronometrum-content");
-const $chronometrum = document.querySelector(".chronometrum");
-const $chronometrumState = document.querySelector(".chronometrum-state");
 
 const chronometrumSSWheel = new SSWheel({
   wrapper: $chronometrumContent,
@@ -26,8 +24,7 @@ const smoothMovement = () => {
         (scrollTop / (scrollHeight - clientHeight)) * 100
       );
 
-      $chronometrum.style.setProperty("--percentage", `${percentageOfScroll}s`);
-      $chronometrumState.style.setProperty(
+      $chronometrumContent.style.setProperty(
         "--percentage",
         `${percentageOfScroll}`
       );

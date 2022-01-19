@@ -29,17 +29,16 @@ $chronometrum-margin-top: 20px;
     width: $chronometrum-side-size;
     height: $chronometrum-side-size;
     margin-top: $chronometrum-margin-top;
-    padding-top: 20px;
     display: flex;
     flex-direction: column;
     flex-shrink: 0;
     align-items: center;
     justify-content: center;
     gap: 0;
-    animation-name: chrono-animation;
+    animation-name: scrollAnimation;
     animation-play-state: paused;
     animation-duration: 100s;
-    animation-delay: calc((var(--percentage) - 1s) * -1);
+    animation-delay: calc((var(--percentage) * 1s - 1s) * -1);
     transform: translateY(0);
 
     &__time {
@@ -47,11 +46,34 @@ $chronometrum-margin-top: 20px;
       font-size: 40px;
       line-height: 35px;
       position: relative;
+      margin-top: 18px;
+    }
+
+    &__ball {
+      position: absolute;
+      display: grid;
+      place-items: center;
+
+      &::before {
+        content: "";
+        position: absolute;
+        display: block;
+        width: 15px;
+        height: 15px;
+        background-color: tomato;
+        border-radius: 50%;
+        top: ($chronometrum-side-size / 2 - 12px) * -1;
+        opacity: max(calc(1 - (var(--percentage) / 50)), 0);
+      }
+
+      &--anim {
+        animation: ballAnimation 3s ease-in-out infinite;
+      }
     }
   }
 }
 
-@keyframes chrono-animation {
+@keyframes scrollAnimation {
   30% {
     margin: 0;
     padding: 10px;
@@ -83,6 +105,16 @@ $chronometrum-margin-top: 20px;
     border-radius: 0;
     transform: translateY(100px);
     gap: 0;
+  }
+}
+
+@keyframes ballAnimation {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
   }
 }
 

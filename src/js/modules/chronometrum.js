@@ -7,6 +7,7 @@ const $ = (selector) => document.querySelector(selector);
 
 const $chronometrumTime = $(".chronometrum__time");
 const $chronometrumLog = $(".chronometrum__log");
+const $chronometrumBall = $(".chronometrum__ball");
 const $chronometrumState = $(".chronometrum-state");
 const $laps = $(".laps");
 const $playPauseButton = $("button[data-chronometrum-button='play/pause']");
@@ -19,7 +20,8 @@ const PLAY_SVG_PATH = "./assets/Play.svg";
 const PAUSE_SVG_PATH = "./assets/Pause.svg";
 
 const chronometrumState = {
-  power: "off",
+  running: false,
+  state: null,
   time: 0,
   laps: [],
   cancelIntervalId: null,
@@ -45,40 +47,48 @@ const playChronometrum = () => {
     $chronometrumTime.textContent = timeText;
     $chronometrumLog.textContent = logText;
   }, 10);
+
+  $playPauseLabel.textContent = "Pause";
+  $playPauseImg.src = PAUSE_SVG_PATH;
+  $lapButton.disabled = false;
+
+  chronometrumState.state = "play";
+
+  if (!chronometrumState.running) {
+    $chronometrumBall.classList.add("chronometrum__ball--anim");
+    $restartButton.disabled = false;
+    $chronometrumState.textContent = "Time";
+
+    chronometrumState.running = true;
+    return;
+  }
+
+  $chronometrumBall.style.animationPlayState = "running";
 };
 
 const pauseChronometrum = () => {
   clearInterval(chronometrumState.cancelIntervalId);
+
+  $chronometrumBall.style.animationPlayState = "paused";
+  $playPauseLabel.textContent = "Continue";
+  $playPauseImg.src = PLAY_SVG_PATH;
+  $lapButton.disabled = true;
+
+  chronometrumState.state = "pause";
 };
 
 const initChronometrumListeners = () => {
   useOn({
     typeEvent: "click",
     selector: "button[data-chronometrum-button='play/pause']",
-    callback: ({ target }) => {
-      const isRunning = target.classList.contains("running");
+    callback: () => {
+      if (
+        chronometrumState.state === null ||
+        chronometrumState.state === "pause"
+      )
+        return playChronometrum();
 
-      if (chronometrumState.power === "off") {
-        chronometrumState.power = "on";
-        $restartButton.disabled = false;
-        $chronometrumState.textContent = "Time";
-      }
-
-      if (!isRunning) {
-        target.classList.add("running");
-        $playPauseLabel.textContent = "Pause";
-        $playPauseImg.src = PAUSE_SVG_PATH;
-        $lapButton.disabled = false;
-
-        playChronometrum();
-      } else {
-        target.classList.remove("running");
-        $playPauseLabel.textContent = "Continue";
-        $playPauseImg.src = PLAY_SVG_PATH;
-        $lapButton.disabled = true;
-
-        pauseChronometrum();
-      }
+      if ((chronometrumState.state = "play")) pauseChronometrum();
     },
   });
 
@@ -104,14 +114,17 @@ const initChronometrumListeners = () => {
     typeEvent: "click",
     selector: "button[data-chronometrum-button='reset']",
     callback: () => {
-      pauseChronometrum();
+      clearInterval(chronometrumState.cancelIntervalId);
 
-      chronometrumState.power = "off";
+      chronometrumState.running = false;
+      chronometrumState.state = null;
       chronometrumState.time = 0;
       chronometrumState.laps.splice(0);
 
       $chronometrumTime.textContent = "00:00:00";
       $chronometrumLog.textContent = "00:00:00";
+      $chronometrumBall.classList.remove("chronometrum__ball--anim");
+      $chronometrumBall.removeAttribute("style");
       $chronometrumState.textContent = "Ready";
       $laps.innerHTML = "";
       $playPauseButton.classList.remove("running");
