@@ -119,6 +119,8 @@ const initChronometrumListeners = () => {
       $playPauseLabel.textContent = "Start";
       $restartButton.disabled = true;
       $lapButton.disabled = true;
+
+      chronometrumSSWheel.scrollTo(0);
     },
   });
 };
