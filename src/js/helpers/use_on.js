@@ -26,15 +26,15 @@ const useOn = ({
     document.addEventListener(
       typeEvent,
       (e) => {
-        const match =
-          e.target.matches(selector) || e.target.matches(`${selector} *`);
-
-        if (!match) {
-          callbackIfNotMatch(e);
+        if (!selector) {
+          callback(e);
           return;
         }
 
-        callback(e);
+        const match =
+          e.target.matches(selector) || e.target.matches(`${selector} *`);
+
+        match ? callback(e) : callbackIfNotMatch(e);
       },
       options
     );
