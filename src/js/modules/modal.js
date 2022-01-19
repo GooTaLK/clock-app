@@ -7,6 +7,7 @@ import initAlarmSettingsModal from "./alarm_settings_modal";
 import initclockAddModal from "./clock_add_modal";
 import initClockSettingsModal from "./clock_settings_modal";
 import initClockEditModal from "./clock_edit_modal";
+import { initTimerRingModal } from "./timer_ring_modal";
 import initSecondModal from "./second_modal";
 
 const $toolContainer = document.querySelector(".tools-container");
@@ -45,14 +46,17 @@ const changeOption = ({ target, buttonSelector, valueTag }) => {
   const $activeIcon = target.parentElement.querySelector(
     ".ca-i-turn_circle--active"
   );
-  const $button = document.querySelector(buttonSelector);
-  const $innerText = $button.querySelector(valueTag);
-  const value = target.value;
-
   $activeIcon.classList.remove("ca-i-turn_circle--active");
   $icon.classList.add("ca-i-turn_circle--active");
-  $button.value = value;
-  $innerText.textContent = value;
+
+  if (buttonSelector !== undefined && valueTag !== undefined) {
+    const $button = document.querySelector(buttonSelector);
+    const $innerText = $button.querySelector(valueTag);
+    const value = target.value;
+
+    $button.value = value;
+    $innerText.textContent = value;
+  }
 
   return isActive;
 };
@@ -91,6 +95,7 @@ const initModals = () => {
   initclockAddModal();
   initClockSettingsModal({ modal, toggleSwitchOption, moveToolContainerX });
   initClockEditModal();
+  initTimerRingModal({ modifyOptionSet, changeOption });
   initSecondModal({ secondModal });
 };
 

@@ -175,22 +175,32 @@
         </section>
 
         <section class="tool-section">
-          <div class="tool__content"></div>
+          <div class="tool__content">
+            <div class="timer-content">
+              <div class="timer">
+                <div class="timer__ball"></div>
+                <div class="timer__animated-top-ball"></div>
+                <div class="timer__animated-bottom-ball"></div>
+                <span class="timer__count">00:00</span>
+              </div>
+              <div class="timer-state">Drag the red ball</div>
+            </div>
+          </div>
           <div class="tool__buttons">
             <div class="ca-btn_group">
-              <button>
+              <button data-timer-button="play/pause" disabled>
                 <img src="./assets/Play.svg" alt="Timer start button" />
               </button>
               <span>Start</span>
             </div>
             <div class="ca-btn_group">
-              <button>
+              <button data-timer-button="reset" disabled>
                 <img src="./assets/Square.svg" alt="Timer restart button" />
               </button>
               <span>Restart</span>
             </div>
             <div class="ca-btn_group">
-              <button>
+              <button data-timer-button="ring">
                 <img src="./assets/Bell.svg" alt="Timer ring button" />
               </button>
               <span>Ring</span>

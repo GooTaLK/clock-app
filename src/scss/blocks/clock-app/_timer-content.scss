@@ -1,0 +1,157 @@
+$timer-size: 250px;
+$ball-size: 15px;
+$ball-border-size: 30px;
+$ball-dragging-size: 20px;
+$ball-anim-size: $ball-size;
+$ball-lift-time: 0.35s;
+$ball-drop-time: 0.65s;
+$ball-anim-time: 1s;
+
+.timer-content {
+  width: 300px;
+  height: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+
+  .timer {
+    user-select: none;
+    border: 1px solid hsl(0, 0%, 50%);
+    border-radius: 50%;
+    width: $timer-size;
+    height: $timer-size;
+    margin-top: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &__ball,
+    &__animated-top-ball,
+    &__animated-bottom-ball {
+      position: absolute;
+      display: grid;
+      place-items: center;
+    }
+
+    &__ball {
+      transform: rotate(var(--angle));
+
+      &::before,
+      &::after {
+        content: "";
+        position: absolute;
+        display: block;
+        border-radius: 50%;
+        cursor: grab;
+      }
+
+      &::before {
+        top: ($timer-size + $ball-size) / 2 * -1;
+        width: $ball-size;
+        height: $ball-size;
+        background-color: tomato;
+      }
+
+      &--dragging::before {
+        top: ($timer-size + $ball-border-size) / 2 * -1;
+        width: $ball-border-size;
+        height: $ball-border-size;
+        background-color: transparent;
+        border: 1px solid tomato;
+      }
+
+      &--dragging::after {
+        top: ($timer-size + $ball-dragging-size) / 2 * -1;
+        width: $ball-dragging-size;
+        height: $ball-dragging-size;
+        background-color: tomato;
+        cursor: grabbing;
+      }
+    }
+
+    &__animated-top-ball::before,
+    &__animated-bottom-ball::before {
+      content: "";
+      position: absolute;
+      display: block;
+      width: $ball-anim-size;
+      height: $ball-anim-size;
+      background-color: tomato;
+      border-radius: 50%;
+    }
+
+    &__animated-top-ball {
+      --initial-ball-rotation: 176deg;
+      --ball-direction: -1;
+      opacity: 0;
+
+      &::before {
+        top: ($timer-size - $ball-anim-size) / 2 * -1 + 5px;
+      }
+
+      &--anim {
+        transition: transform $ball-drop-time $ball-lift-time ease-in,
+          opacity 0.7s;
+        transform: rotate(var(--initial-ball-rotation));
+        opacity: 1;
+        animation: animBall $ball-anim-time ease-out
+          ($ball-lift-time + $ball-drop-time + ($ball-anim-time / 2)) infinite
+          alternate;
+      }
+    }
+
+    &__animated-bottom-ball {
+      --initial-ball-rotation: 4deg;
+      --ball-direction: 1;
+      transform: translateY(35px);
+      opacity: 0;
+
+      &::before {
+        bottom: ($timer-size - $ball-anim-size) / 2 * -1 + 5px;
+      }
+
+      &--anim {
+        transition: transform $ball-lift-time ease-in-out, opacity 0.2s;
+        transform: rotate(var(--initial-ball-rotation));
+        opacity: 1;
+        animation: animBall $ball-anim-time ease-out
+          ($ball-lift-time + $ball-drop-time - ($ball-anim-time / 2)) infinite
+          alternate;
+      }
+    }
+
+    &__count {
+      font-weight: lighter;
+      font-size: 70px;
+
+      &--large {
+        font-size: 50px;
+      }
+    }
+  }
+
+  .timer-state {
+    text-align: center;
+    font-size: 18px;
+    color: hsl(0, 0%, 60%);
+    margin-bottom: 10px;
+  }
+}
+
+@keyframes animBall {
+  0% {
+    transform: rotate(var(--initial-ball-rotation));
+  }
+
+  50% {
+    transform: rotate(calc(var(--initial-ball-rotation)));
+  }
+
+  100% {
+    transform: rotate(
+      calc(var(--initial-ball-rotation) + (46deg * var(--ball-direction)))
+    );
+  }
+}
