@@ -1,5 +1,8 @@
 .alarm-modal {
+  width: 100%;
+  max-width: 500px;
   height: 100%;
+  margin: 0 auto;
   background-color: hsl(0, 0%, 4%);
 
   &__content {

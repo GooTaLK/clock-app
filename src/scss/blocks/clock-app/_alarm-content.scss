@@ -1,17 +1,22 @@
 @use "../../placeholders" as *;
 
 .alarm-content {
-  margin: 1px 38px 0 38px;
-  width: calc(100% - 76px);
+  width: calc(100vw - 76px);
   height: calc(100vh - 231px);
+  max-width: 500px;
+  min-width: 300px;
+  margin: 0 auto;
+  padding-top: 1px;
   box-shadow: 0 -1px #2d3335;
   display: flex;
   flex-direction: column;
 
   &--empty {
-    height: calc(100vh - 80px);
-    margin: 0 20px;
     width: calc(100% - 40px);
+    height: calc(100vh - 80px);
+    max-width: 500px;
+    min-width: 300px;
+    margin: 0 auto;
     box-shadow: none;
 
     &__frontage {
