@@ -5,12 +5,23 @@
   display: flex;
   flex-direction: column;
   position: relative;
+
+  @media (min-width: 1025px) {
+    flex-direction: row;
+    align-items: center;
+    padding-left: 100px;
+    padding-right: 100px;
+  }
 }
 
 .tool__content {
   min-height: calc(100% - 150px);
   overflow-y: auto;
   overflow-x: hidden;
+
+  @media (min-width: 1025px) {
+    width: 50%;
+  }
 }
 
 .tool__buttons {
@@ -21,4 +32,13 @@
   display: flex;
   gap: 5px;
   overflow-x: auto;
+
+  @media (min-width: 1025px) {
+    flex-wrap: wrap;
+    width: 50%;
+    max-width: 50%;
+    margin: 0;
+    padding: 0 calc((50vw - 500px) / 2);
+    box-shadow: none;
+  }
 }
