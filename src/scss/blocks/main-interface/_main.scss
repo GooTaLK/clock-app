@@ -1,4 +1,10 @@
 .main {
+  position: relative;
   height: 100vh;
   overflow: hidden;
+  background: linear-gradient(
+    to top,
+    hsl(240, 20%, 16%, 0.7) calc(100vh - 30px),
+    transparent 100vh
+  );
 }

@@ -5,7 +5,7 @@ import useOn from "../helpers/use_on";
 import Figure from "../dom_elements/Figure";
 import { toggleClockFormat } from "./clock";
 
-const $header = document.querySelector(".header");
+const $headerBackground = document.querySelector(".header__background");
 const $headerOptionBtn = document.querySelector(".header__options-btn");
 const $headerOptionMenu = document.querySelector(".header__options-menu");
 const $menuHamburgerIcon = document.querySelector(".lki-three_bars");
@@ -17,7 +17,7 @@ const setBackgroundImageWithId = (dataImgId) => {
   const matchingData = backgroundData.filter(
     ({ id }) => id === Number(dataImgId)
   );
-  $header.style.setProperty(
+  $headerBackground.style.setProperty(
     "background-image",
     `url(${matchingData[0].imgSrc})`
   );
