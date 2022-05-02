@@ -1,9 +1,9 @@
 .alarm-modal {
   width: 100%;
-  max-width: 500px;
   height: 100%;
-  margin: 0 auto;
-  background-color: hsl(0, 0%, 4%);
+  padding-left: max(35px, (100vw - 700px) / 2);
+  padding-right: max(35px, (100vw - 700px) / 2);
+  background-color: hsla(222, 15%, 6%, 0.97);
 
   &__content {
     padding-top: 1px;
@@ -21,7 +21,7 @@
       padding: 14px;
     }
 
-    .ca-long-btn[data-alarm-button="delete"] {
+    .ca-long-btn[data-alarm-button='delete'] {
       color: tomato;
     }
   }

@@ -1,9 +1,9 @@
 .clock-modal {
   width: 100%;
-  max-width: 500px;
   height: 100%;
-  margin: 0 auto;
-  background-color: hsl(0, 0%, 4%);
+  padding-left: max(35px, (100vw - 700px) / 2);
+  padding-right: max(35px, (100vw - 700px) / 2);
+  background-color: hsla(222, 15%, 6%, 0.97);
 
   &__content {
     padding-top: 1px;
@@ -11,14 +11,14 @@
     overflow: auto;
   }
 
-  &[data-clock-modal-type="add"] &__content {
+  &[data-clock-modal-type='add'] &__content {
     .clock-option__search-input {
       display: grid;
       place-items: center;
     }
   }
 
-  &[data-clock-modal-type="edit"] &__content {
+  &[data-clock-modal-type='edit'] &__content {
     position: relative;
     width: calc(100% - (38px * 2));
     margin: 0 auto;
