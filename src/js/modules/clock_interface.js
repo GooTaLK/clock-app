@@ -14,15 +14,15 @@ const $clockEditButton = document.querySelector(
 
 const date = new Date();
 
-const rotateEffect = (el, deg) =>
-  el.style.setProperty("transform", `rotate(${deg}deg)`);
+const setInitialRotation = (el, deg) =>
+  el.style.setProperty("--initial-rotation", deg);
 
 const setBorderEffect = () => {
   const time = date.toLocaleTimeString();
   const seconds = time.match(/:\d{1,2}$/)[0].replace(":", "");
   const deg = 6 * seconds;
 
-  rotateEffect($clockBackground, deg);
+  setInitialRotation($clockBackground, deg);
 };
 
 const fillClockInfo = () => {
