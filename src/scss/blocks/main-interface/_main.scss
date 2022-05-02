@@ -7,4 +7,5 @@
     hsl(240, 20%, 16%, 0.7) calc(100vh - 30px),
     transparent 100vh
   );
+  backdrop-filter: blur(5px);
 }
