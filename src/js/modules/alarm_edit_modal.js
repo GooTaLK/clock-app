@@ -223,7 +223,7 @@ const initAlarmEditModal = ({
 
       secondModal.open({
         children: CaSecondModal({
-          title: "Repetir",
+          title: "Repeat",
           content: {
             type: "options",
             options: repeatOptions,
