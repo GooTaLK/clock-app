@@ -16,8 +16,6 @@
 
 .tool__content {
   min-height: calc(100% - 150px);
-  overflow-y: auto;
-  overflow-x: hidden;
 
   @media (min-width: 1025px) {
     width: 50%;

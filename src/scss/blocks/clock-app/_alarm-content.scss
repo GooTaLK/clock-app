@@ -1,15 +1,17 @@
 @use '../../placeholders' as *;
 
 .alarm-content {
-  width: calc(100vw - 76px);
+  width: 100vw;
   height: calc(100vh - 231px);
-  max-width: 500px;
+  max-width: 576px;
   min-width: 300px;
-  margin: 0 auto;
   padding-top: 1px;
+  padding-left: 38px;
+  padding-right: 38px;
   box-shadow: 0 -1px #2d3335;
   display: flex;
   flex-direction: column;
+  overflow-y: auto;
 
   &--empty {
     width: calc(100% - 40px);
@@ -18,6 +20,10 @@
     min-width: 300px;
     margin: 0 auto;
     box-shadow: none;
+
+    @media (min-width: 1025px) {
+      transform: translateX(50%);
+    }
 
     &__frontage {
       flex-grow: 1;
