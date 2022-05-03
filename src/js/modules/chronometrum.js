@@ -103,7 +103,7 @@ const initChronometrumListeners = () => {
       $lap.classList.add("lap");
       $lap.textContent = lapText;
 
-      $laps.appendChild($lap);
+      $laps.insertAdjacentElement('afterbegin', $lap);
       chronometrumState.laps.push(timeLoged);
 
       chronometrumSSWheel.scrollTo(100, { type: "percentage" });
