@@ -10,7 +10,7 @@ const CaAlarmEditModal = ({
   time,
   repeat,
   ring,
-  vibrate,
+  active,
   name,
 }) => {
   const $container = document.createElement("div");
@@ -48,12 +48,12 @@ const CaAlarmEditModal = ({
       rightIcon: { className: "ca-i-chevron", text: ring },
     },
   });
-  const $editVibrate = CaModalOption("alarm-option__edit-vibrate", {
+  const $editActive = CaModalOption("alarm-option__edit-active", {
     type: "switchButton",
     switchButton: {
-      name: "vibrate",
-      text: "Vibrate",
-      value: vibrate,
+      name: "active",
+      text: "Active",
+      value: active ? "On" : "Off",
     },
   });
   const $editName = CaModalOption("alarm-option__edit-name", {
@@ -72,7 +72,7 @@ const CaAlarmEditModal = ({
 
   $content.classList.add("alarm-modal__content");
 
-  $content.append($editTime, $editRepeat, $editRing, $editVibrate, $editName);
+  $content.append($editTime, $editRepeat, $editRing, $editActive, $editName);
 
   if (isEdit) {
     const $deleteBtn = document.createElement("button");

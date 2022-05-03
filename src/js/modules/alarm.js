@@ -125,7 +125,7 @@ const shouldAlert = (id, time, repeat, customRepeat) => {
 
 const checkAlarms = () => {
   alarmState.forEach(
-    ({ id, active, name, time, vibrate, ring, repeat, customRepeat }) => {
+    ({ id, active, name, time, ring, repeat, customRepeat }) => {
       if (active) {
         const alert = shouldAlert(id, `${time}:00`, repeat, customRepeat);
 

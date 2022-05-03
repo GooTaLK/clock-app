@@ -84,7 +84,7 @@ const initAlarmEditModal = ({
       if (target.matches(".ca-i-switch")) return;
 
       const alarmId = getDataOfParent(target, "alarmId");
-      const { time, name, repeat, ring, vibrate } = getOneLocalDataById(
+      const { time, name, repeat, ring, active } = getOneLocalDataById(
         "alarm-data",
         alarmId
       );
@@ -99,7 +99,7 @@ const initAlarmEditModal = ({
           name,
           repeat,
           ring,
-          vibrate,
+          active,
         }),
         animation: "rightToLeft",
       });
@@ -158,7 +158,7 @@ const initAlarmEditModal = ({
       const isEdit = getDataOfParent(target, "alarmModalType") === "edit";
       const id = getDataOfParent(target, "alarmId");
 
-      const { ring, vibrate, repeat, leftWheel, rightWheel, alarmName } =
+      const { ring, active, repeat, leftWheel, rightWheel, alarmName } =
         document.querySelector(".alarm-modal__content");
 
       const repeatAllowValues = defaultRepeatAllowValues;
@@ -171,12 +171,11 @@ const initAlarmEditModal = ({
 
       const newAlarmToSave = {
         ring: ring.value,
-        vibrate: vibrate.value,
+        active: active.value === "On",
         repeat: repeat.value,
         customRepeat: isRepeatCustom,
         time: `${leftWheel.value}:${rightWheel.value}`,
         name: alarmName.value,
-        active: true,
         id: id || generateId,
       };
 
@@ -405,10 +404,10 @@ const initAlarmEditModal = ({
 
   useOn({
     typeEvent: "click",
-    selector: ".alarm-option__edit-vibrate button",
+    selector: ".alarm-option__edit-active button",
     callback: ({ target }) => {
       const newValue = toggleSwitchOption(target);
-      updateDataIfIsAdd({ vibrate: newValue });
+      updateDataIfIsAdd({ active: newValue === "On" });
     },
   });
 

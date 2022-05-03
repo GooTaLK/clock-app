@@ -1,6 +1,6 @@
 {
   "repeat": "Only one time",
   "ring": "Conan Main Theme",
-  "vibrate": "off",
+  "active": true,
   "name": "Alarm"
 }
