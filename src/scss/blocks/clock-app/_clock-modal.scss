@@ -13,6 +13,8 @@
 
   &[data-clock-modal-type='add'] &__content {
     .clock-option__search-input {
+      position: sticky;
+      top: 0;
       display: grid;
       place-items: center;
     }
