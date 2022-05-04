@@ -12,6 +12,7 @@ const emptyAlarmContent = () => {
   $alarmContent.append($frontage, $button);
   $alarmContent.classList.add("alarm-content--empty");
   $alarmButtons.classList.add("display-none");
+  $alarmButtons.style.width = 0;
 };
 
 const initAlarmInterface = () => {
@@ -33,6 +34,7 @@ const initAlarmInterface = () => {
     });
   $alarmContent.classList.remove("alarm-content--empty");
   $alarmButtons.classList.remove("display-none");
+  $alarmButtons.removeAttribute('style');
 };
 
 export { initAlarmInterface };

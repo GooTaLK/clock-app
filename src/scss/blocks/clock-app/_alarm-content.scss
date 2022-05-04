@@ -21,10 +21,6 @@
     margin: 0 auto;
     box-shadow: none;
 
-    @media (min-width: 1025px) {
-      transform: translateX(50%);
-    }
-
     &__frontage {
       flex-grow: 1;
       display: flex;
